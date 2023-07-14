@@ -41,5 +41,5 @@ The global variables will be stored in the main class.
 
 ### Version notes:
 SQLite: 3.31.1 (released on 2020-01-27)  
-gcc: 9.4.0 (released in 2019)  
+g++: 9.4.0 (released in 2019)  
 nlohmann/json: 3.11.2 (released on 2022-08-12)
