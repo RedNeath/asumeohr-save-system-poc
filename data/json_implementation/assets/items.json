@@ -1,0 +1,66 @@
+[
+	{
+		"id": 1000,
+		"name": "Home keys",
+		"description": "Quite useful when you want to come back home.",
+		"icon": "key1.png"
+	},
+	{
+		"id": 1001,
+		"name": "Unkown dungeon key",
+		"description": "A key that an old man gave you. It is supposed to open an ancient dungeon door, but the old man passed away before he could tell you where the dungeon is...",
+		"icon": "key2.png"
+	},
+
+	{
+		"id": 1002,
+		"name": "Random effect potion",
+		"description": "Impossible to know what it will to do before drinking it... Let's just hope it won't kill you",
+		"icon": "potion1.png"
+	},
+	{
+		"id": 1003,
+		"name": "Healing potion",
+		"description": "Potions are getting a whole lot more costful these days... Use it wisely!",
+		"icon": "potion2.png"
+	},
+
+	{
+		"id": 1004,
+		"name": "Ancient spell collection",
+		"description": "Even though it is supposed to be a collection, the pages are so damaged that it may only contain one spell. What a waste...",
+		"icon": "book1.png"
+	},
+	{
+		"id": 1005,
+		"name": "Genius wizard spell parchment",
+		"description": "A parchment written by hand by the best living wizard. Reading it will make you unlock a new spell instantly!",
+		"icon": "book2.png"
+	},
+
+	{
+		"id": 1006,
+		"name": "Philosopher essay",
+		"description": "A short book that will make you think, for once. Maybe you'll learn new skills thanks to it?",
+		"icon": "book3.png"
+	},
+	{
+		"id": 1007,
+		"name": "Science manual",
+		"description": "Just a book filled with scientific concepts and exercises to understand these. That's what they use in big universities!",
+		"icon": "book4.png"
+	},
+
+	{
+		"id": 1008,
+		"name": "Rock solid stones",
+		"description": "Quite logical, you'd tell me... But that means they can be used as a building material!",
+		"icon": "material1.png"
+	},
+	{
+		"id": 1009,
+		"name": "Finest wood",
+		"description": "At least, that's what the seller told you...",
+		"icon": "materials2.png"
+	}
+]

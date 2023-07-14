@@ -1,0 +1,101 @@
+[
+	{
+		"id": 3000,
+		"name": "Beginner's hat",
+		"description": "This hat is there purely for style. Maybe you should change for a better one as soon as possible...",
+		"icon": "head1.png",
+		"damageAbsorption": 0,
+		"durability": 10
+	},
+	{
+		"id": 3001,
+		"name": "Regular t-shirt",
+		"description": "This is the t-shirt you were wearing when you first started your adventure. It is full of memories...",
+		"icon": "top1.png",
+		"damageAbsorption": 0,
+		"durability": 15
+	},
+	{
+		"id": 3002,
+		"name": "Regular short",
+		"descript̂ion": "This is the short you were wearing when you first started your adventure. It is full of memories...",
+		"icon": "bottom1.png",
+		"damageAbsorption": 0,
+		"durability": 15
+	},
+	{
+		"id": 3003,
+		"name": "Old leather boots",
+		"description": "What a stylish cloth... Unfortunately, it won't protect you much. You'd probably better save them for special occasions...",
+		"icon": "shoes1.png",
+		"damageAbsorption": 0.5,
+		"durability": 25
+	},
+
+
+	{
+		"id": 3004,
+		"name": "Construction worker's helmet",
+		"description": "Offers a great compromise between weight and resistence.",
+		"icon": "head2.png",
+		"damageAbsorption": 1,
+		"durability": 40
+	},
+	{
+		"id": 3005,
+		"name": "Oversized winter jacket",
+		"description": "It is so large that it becomes able to absorb some damage!",
+		"icon": "top2.png",
+		"damageAbsorption": 2,
+		"durability": 50
+	},
+	{
+		"id": 3006,
+		"name": "Kevlar jeans",
+		"descript̂ion": "Kevlar is a pretty strong material, and it keeps you agile!",
+		"icon": "bottom2.png",
+		"damageAbsorption": 3,
+		"durability": 45
+	},
+	{
+		"id": 3007,
+		"name": "Brand new leather boots",
+		"description": "These shoes still looks good, but they don't have the same flavour as their classical counterpart.",
+		"icon": "shoes2.png",
+		"damageAbsorption": 0.8,
+		"durability": 70
+	},
+
+	{
+		"id": 3008,
+		"name": "Forged metal helmet",
+		"description": "Pretty heavy, but nearly unbreakable...",
+		"icon": "head3.png",
+		"damageAbsorption": 5,
+		"durability": 185
+	},
+	{
+		"id": 3009,
+		"name": "Forged metal breast plate",
+		"description": "Pretty heavy, but nearly unbreakable...",
+		"icon": "top3.png",
+		"damageAbsorption": 7,
+		"durability": 200
+	},
+	{
+		"id": 3010,
+		"name": "Forged metal leg protections",
+		"descript̂ion": "Pretty heavy, but nearly unbreakable...",
+		"icon": "bottom3.png",
+		"damageAbsorption": 6,
+		"durability": 195
+	},
+	{
+		"id": 3011,
+		"name": "Forged metal boots",
+		"description": "Pretty heavy, but nearly unbreakable...",
+		"icon": "shoes3.png",
+		"damageAbsorption": 3,
+		"durability": 220
+	}
+]

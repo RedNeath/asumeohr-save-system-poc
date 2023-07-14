@@ -1,0 +1,74 @@
+[
+	{
+		"id": 4000,
+		"name": "Seeing",
+		"description": "An elementary skill. It'll be difficult to start an adventure without it...",
+		"icon": "skill1.png"
+	},
+	{
+		"id": 4001,
+		"name": "Hearing",
+		"description": "An elementary skill. It'll be difficult to start an adventure without it...",
+		"icon": "skill2.png"
+	},
+	{
+		"id": 4002,
+		"name": "Smelling",
+		"description": "An elementary skill. It'll be difficult to start an adventure without it...",
+		"icon": "skill3.png"
+	},
+	{
+		"id": 4003,
+		"name": "Reasoning",
+		"description": "This skill is passive, but it will help you understand more things",
+		"icon": "skill4.png"
+	},
+	{
+		"id": 4004,
+		"name": "Elements recognition",
+		"description": "You now know the periodic table of elements heartwise! Perfect to recognise each and every element!",
+		"icon": "skill5.png"
+	},
+	{
+		"id": 4005,
+		"name": "Element's reactions",
+		"description": "You are now a genius chemist! Use your skills wisely to create new powerful weapons!",
+		"icon": "skill6.png"
+	},
+	{
+		"id": 4006,
+		"name": "Eloquence",
+		"description": "Now you won't ever stutter in public anymore... And people will trust you easily!",
+		"icon": "skill7.png"
+	},
+	{
+		"id": 4007,
+		"name": "Compromise",
+		"description": "Helps you have people agree with you. Perfect when you lead a group of persons with various opinions.",
+		"icon": "skill8.png"
+	},
+	{
+		"id": 4008,
+		"name": "Drama seeds",
+		"description": "Helps you manipulating people into hating each other. You'd better be careful when using it...",
+		"icon": "skill9.png"
+	},
+	{
+		"id": 4009,
+		"name": "Sword handling",
+		"description": "Reinforces with time.",
+		"icon": "skill10.png"
+	},
+	{
+		"id": 4010,
+		"name": "Shield handling",
+		"description": "Reinforces with time.",
+		"icon": "skill11.png"
+	},
+	{
+		"id": 4011,
+		"name": "Poison resistance",
+		"description": "Reinforces with time.",
+		"icon": "skill12.png"
+	}
+]

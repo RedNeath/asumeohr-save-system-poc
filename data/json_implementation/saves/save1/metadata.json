@@ -1,0 +1,12 @@
+{
+    "id": 5000,
+    "name": "Redness",
+    "map": 3,
+    "posX": 22,
+    "posY": 13,
+
+    "weapon": {
+        "id": 2010,
+        "durabilityLeft": 48
+    }
+}

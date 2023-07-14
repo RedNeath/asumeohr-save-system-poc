@@ -1,0 +1,138 @@
+[
+	{
+		"id": 2000,
+		"name": "Wooden sword",
+		"description": "A child toy...",
+		"icon": "sword1.png",
+		"damage": 2,
+		"frequency": 60,
+		"loadTime": 0,
+		"range": 2,
+		"durability": 20
+	},
+	{
+		"id": 2001,
+		"name": "Kitchen knife",
+		"description": "Very sharp, but very short...",
+		"icon": "sword2.png",
+		"damage": 6,
+		"frequency": 80,
+		"loadTime": 0,
+		"range": 1,
+		"durability": 65
+	},
+	{
+		"id": 2002,
+		"name": "Old pirate sabre",
+		"description": "Nice brass handle, one sided blade with a slight curvature; but it's definitely not sharp...",
+		"icon": "sword3.png",
+		"damage": 5,
+		"frequency": 60,
+		"loadTime": 0,
+		"range": 3,
+		"durability": 100
+	},
+	{
+		"id": 2003,
+		"name": "Hero's sword",
+		"description": "Just the most perfect sword ever built",
+		"icon": "sword4.png",
+		"damage": 15,
+		"frequency": 45,
+		"loadTime": 0,
+		"range": 4,
+		"durability": 2500
+	},
+
+
+	{
+		"id": 2004,
+		"name": "Small wooden shield",
+		"description": "A child toy...",
+		"icon": "shield1.png",
+		"damage": 2,
+		"frequency": 55,
+		"loadTime": 0.2,
+		"range": 2,
+		"durability": 50
+	},
+	{
+		"id": 2005,
+		"name": "Furnace plate",
+		"description": "You urgently took it out of the furnace... But that's not really a shield...",
+		"icon": "shield2.png",
+		"damage": 4,
+		"frequency": 40,
+		"loadTime": 0.3,
+		"range": 3,
+		"durability": 45
+	},
+	{
+		"id": 2006,
+		"name": "Old roman shield",
+		"description": "Found on the ground and apparently not used anymore. I wonder why...",
+		"icon": "shield3.png",
+		"damage": 9,
+		"frequency": 20,
+		"loadTime": 0.5,
+		"range": 3,
+		"durability": 250
+	},
+	{
+		"id": 2007,
+		"name": "Hero's shield",
+		"description": "Just the most perfect shield ever built",
+		"icon": "shield4.png",
+		"damage": 18,
+		"frequency": 40,
+		"loadTime": 0.5,
+		"range": 4,
+		"durability": 8000
+	},
+
+
+	{
+		"id": 2008,
+		"name": "Half chopped curtain rod",
+		"description": "A child toy...",
+		"icon": "staff1.png",
+		"damage": 3,
+		"frequency": 15,
+		"loadTime": 1,
+		"range": 6,
+		"durability": 30
+	},
+	{
+		"id": 2009,
+		"name": "Old ladle",
+		"description": "Yeah... you should definitely stop taking kitchen ustensils as weapons...",
+		"icon": "staff2.png",
+		"damage": 6,
+		"frequency": 20,
+		"loadTime": 1,
+		"range": 7,
+		"durability": 80
+	},
+	{
+		"id": 2010,
+		"name": "Nicely carved rod",
+		"description": "A pretty old weapon, but it is decent at least",
+		"icon": "staff3.png",
+		"damage": 12,
+		"frequency": 20,
+		"loadTime": 1.2,
+		"range": 7,
+		"durability": 120
+	},
+	{
+		"id": 2011,
+		"name": "Hero's staff",
+		"description": "Just the most perfect staff ever built",
+		"icon": "staff4.png",
+		"damage": 35,
+		"frequency": 30,
+		"loadTime": 0.8,
+		"range": 10,
+		"durability": 1300
+	},
+]
