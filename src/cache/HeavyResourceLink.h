@@ -10,7 +10,7 @@
 /**
  * This is the link object for the double linked list that belongs to the cache.
  */
- template <typename TResource>
+template <typename TResource>
 class HeavyResourceLink {
 private:
     HeavyResourceLink<TResource> *LessUsedResourceLink;
