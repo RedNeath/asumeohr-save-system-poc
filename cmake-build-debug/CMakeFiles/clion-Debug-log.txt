@@ -1,5 +1,0 @@
-/opt/CLion/bin/cmake/linux/x64/bin/cmake -DCMAKE_BUILD_TYPE=Debug -DCMAKE_MAKE_PROGRAM=/opt/CLion/bin/ninja/linux/x64/ninja -G Ninja -S /home/redneath/Documents/asumeohr-save-system-poc -B /home/redneath/Documents/asumeohr-save-system-poc/cmake-build-debug
--- Using the multi-header code from /home/redneath/Documents/asumeohr-save-system-poc/cmake-build-debug/_deps/json-src/include/
--- Configuring done
--- Generating done
--- Build files have been written to: /home/redneath/Documents/asumeohr-save-system-poc/cmake-build-debug

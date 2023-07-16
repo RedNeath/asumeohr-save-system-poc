@@ -1,5 +1,0 @@
-/home/redneath/Documents/asumeohr-save-system-poc/cmake-build-debug/CMakeFiles/asumeohr_save_system_poc.dir
-/home/redneath/Documents/asumeohr-save-system-poc/cmake-build-debug/CMakeFiles/edit_cache.dir
-/home/redneath/Documents/asumeohr-save-system-poc/cmake-build-debug/CMakeFiles/rebuild_cache.dir
-/home/redneath/Documents/asumeohr-save-system-poc/cmake-build-debug/_deps/json-build/CMakeFiles/edit_cache.dir
-/home/redneath/Documents/asumeohr-save-system-poc/cmake-build-debug/_deps/json-build/CMakeFiles/rebuild_cache.dir
