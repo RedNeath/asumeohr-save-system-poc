@@ -33,3 +33,6 @@
 
 # JetBrains files
 .idea/
+
+# CMake output
+cmake-build-debug/

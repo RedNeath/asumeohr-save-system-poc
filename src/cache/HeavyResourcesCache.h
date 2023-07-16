@@ -1,0 +1,14 @@
+//
+// Created by redneath on 16/07/23.
+//
+
+#ifndef ASUMEOHR_SAVE_SYSTEM_POC_HEAVYRESOURCESCACHE_H
+#define ASUMEOHR_SAVE_SYSTEM_POC_HEAVYRESOURCESCACHE_H
+
+
+class HeavyResourcesCache {
+
+};
+
+
+#endif //ASUMEOHR_SAVE_SYSTEM_POC_HEAVYRESOURCESCACHE_H

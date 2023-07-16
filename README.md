@@ -27,7 +27,7 @@ be used as well to manage the memory. In a real implementation, we could simply
 load what is required at the very moment when starting the game, and continuously
 keep loading things following the user's movements and actions.
 
-## Infrastructure
+## Infrastructure & prototype details
 Of course, to make the tests interesting, we need to gather some data to load
 and store. And to gather this data, we have to create classes. Here's what this
 POC will come up with:
@@ -35,8 +35,12 @@ POC will come up with:
 positions, ...
 - a `Map` class, with its dimensions, its sprite, ...
 - an `Item` class, with 2 sub-classes: `Weapon` and `Equipment`
-- a `Skill` class, with a name, an incon, a description, ...
+- a `Skill` class, with a name, an icon, a description, ...
 The global variables will be stored in the main class.
+
+### Total amount of data to load
+- JSON: 1.4MB
+- SQLITE: 1.4MB (size of the database, so probably a bit less).
 
 
 ### Version notes:
