@@ -13,5 +13,10 @@ GameSettings::GameSettings() {
     ifstream f("../data/game_settings.json");
     JsonDictionary data = JsonDictionary::parse(f);
 
-    MapCacheSize = data["mapCacheSize"];
+    data.at("mapsCacheSize").get_to(MapCacheSize);
+}
+
+void GameSettings::to_json(JsonDictionary &json, const GameSettings &gameSettings) {
+    json = JsonDictionary();
+    json["mapsCacheSize"] = gameSettings.MapCacheSize;
 }

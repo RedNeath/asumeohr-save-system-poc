@@ -12,6 +12,12 @@ Skill::Skill(int id, const string &name, const string &description) {
     Description = description;
 }
 
+Skill::Skill(const JsonDictionary &json) {
+    json.at("id").get_to(Id);
+    json.at("name").get_to(Name);
+    json.at("description").get_to(Description);
+}
+
 int Skill::GetId() const {
     return Id;
 }

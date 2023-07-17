@@ -25,6 +25,16 @@ Equipment::Equipment(int id, const string &name, const string &description, floa
     DurabilityLeft = durabilityLeft;
 }
 
+Equipment::Equipment(const JsonDictionary &json) : Item(json) {
+    json.at("damageAbsorption").get_to(DamageAbsorption);
+    json.at("durability").get_to(Durability);
+}
+
+bool Equipment::Use() {
+    // Place specific usage code here
+    return true;
+}
+
 float Equipment::GetDamageAbsorption() const {
     return DamageAbsorption;
 }
@@ -50,7 +60,6 @@ void Equipment::SetDurability(int durability) {
     }
 }
 
-bool Equipment::Use() {
-    // Place specific usage code here
-    return true;
+void Equipment::SetDurabilityLeft(int durabilityLeft) {
+    DurabilityLeft = durabilityLeft;
 }

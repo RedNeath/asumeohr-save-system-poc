@@ -8,6 +8,9 @@
 
 #include "Item.h"
 #include "../interfaces/ILimitedDurabilityItem.h"
+#include "nlohmann/json.hpp"
+
+using JsonDictionary = nlohmann::json;
 
 class Weapon: public Item, protected ILimitedDurabilityItem {
 private:
@@ -22,6 +25,7 @@ public:
            float loadTime, int range, int durability);
     Weapon(int id, const std::string &name, const std::string &description, float damage, float frequency,
            float loadTime, int range, int durability, int durabilityLeft);
+    explicit Weapon(const JsonDictionary &json);
 
     bool Use() override;
 
@@ -39,6 +43,7 @@ public:
     void SetLoadTime(float loadTime);
     void SetRange(int range);
     void SetDurability(int durability);
+    void SetDurabilityLeft(int durabilityLeft);
 };
 
 

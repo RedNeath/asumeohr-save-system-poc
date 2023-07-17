@@ -7,6 +7,9 @@
 
 
 #include <string>
+#include "nlohmann/json.hpp"
+
+using JsonDictionary = nlohmann::json;
 
 class Item {
 protected:
@@ -17,6 +20,7 @@ protected:
 
 public:
     Item(int id, const std::string &name, const std::string &description);
+    explicit Item(const JsonDictionary &json);
 
     // Getters
     int GetId() const;

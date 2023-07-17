@@ -3,6 +3,7 @@
 //
 
 #include "Player.h"
+#include "../JsonGameLoader.h"
 
 using namespace std;
 
@@ -20,9 +21,32 @@ Player::Player(int id, const std::string &name, class Map* map, int posX, int po
     Skills = skills;
 }
 
+Player::Player(JsonGameLoader *gameLoader, const JsonDictionary &metadata, const JsonDictionary &equipments,
+               const JsonDictionary &inventory, const JsonDictionary &skills) {
+    string mapName;
+    JsonDictionary weapon;
+
+    metadata.at("id").get_to(Id);
+    metadata.at("name").get_to(Name);
+    metadata.at("map").get_to(mapName);
+    metadata.at("posX").get_to(PosX);
+    metadata.at("posY").get_to(PosY);
+    metadata.at("weapon").get_to(weapon);
+
+    Map = gameLoader->LoadMap(mapName);
+    Weapon = gameLoader->LoadWeapon(weapon);
+    Equipments = gameLoader->LoadEquipments(equipments);
+    Inventory = gameLoader->LoadInventory(inventory);
+    Skills = gameLoader->LoadSkills(skills);
+}
+
 Player::~Player() {
     delete Map;
     delete Weapon;
+}
+
+void Player::to_json(JsonDictionary &json, const Player &player) {
+
 }
 
 int Player::GetId() const {

@@ -30,6 +30,14 @@ Weapon::Weapon(int id, const string &name, const string &description, float dama
     DurabilityLeft = durabilityLeft;
 }
 
+Weapon::Weapon(const JsonDictionary &json) : Item(json) {
+    json.at("damage").get_to(Damage);
+    json.at("frequency").get_to(Frequency);
+    json.at("loadTime").get_to(LoadTime);
+    json.at("range").get_to(Range);
+    json.at("durability").get_to(Durability);
+}
+
 bool Weapon::Use() {
     // Place specific usage code here
     return false;
@@ -82,4 +90,8 @@ void Weapon::SetDurability(int durability) {
     if (durability < DurabilityLeft) {
         DurabilityLeft = durability;
     }
+}
+
+void Weapon::SetDurabilityLeft(int durabilityLeft) {
+    DurabilityLeft = durabilityLeft;
 }

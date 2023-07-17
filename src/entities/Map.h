@@ -7,6 +7,9 @@
 
 
 #include <string>
+#include "nlohmann/json.hpp"
+
+using JsonDictionary = nlohmann::json;
 
 class Map {
 private:
@@ -18,6 +21,7 @@ private:
 
 public:
     Map(int id, const std::string &name, int height, int width);
+    Map(const JsonDictionary &json);
 
     // Getters
     int GetId() const;

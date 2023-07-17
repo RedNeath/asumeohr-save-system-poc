@@ -14,6 +14,12 @@ Item::Item(int id, const string &name, const string &description) {
     Description = description;
 }
 
+Item::Item(const JsonDictionary &json) {
+    json.at("id").get_to(Id);
+    json.at("name").get_to(Name);
+    json.at("description").get_to(Description);
+}
+
 int Item::GetId() const {
     return Id;
 }

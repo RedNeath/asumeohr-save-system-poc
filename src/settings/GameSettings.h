@@ -5,6 +5,9 @@
 #ifndef ASUMEOHR_SAVE_SYSTEM_POC_GAMESETTINGS_H
 #define ASUMEOHR_SAVE_SYSTEM_POC_GAMESETTINGS_H
 
+#include "nlohmann/json.hpp"
+
+using JsonDictionary = nlohmann::json;
 
 /**
  * This class contains the game settings (by reading the properties in data/game_settings.json)
@@ -15,6 +18,7 @@ public:
     int MapCacheSize;
 
     GameSettings();
+    static void to_json(JsonDictionary &json, const GameSettings &gameSettings);
 };
 
 

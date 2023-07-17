@@ -13,6 +13,13 @@ Map::Map(int id, const string &name, int height, int width) {
     Width = width;
 }
 
+Map::Map(const JsonDictionary &json) {
+    json.at("id").get_to(Id);
+    json.at("name").get_to(Name);
+    json.at("height").get_to(Height);
+    json.at("width").get_to(Width);
+}
+
 int Map::GetId() const {
     return Id;
 }

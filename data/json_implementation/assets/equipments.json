@@ -85,7 +85,7 @@
 	{
 		"id": 3010,
 		"name": "Forged metal leg protections",
-		"descript̂ion": "Pretty heavy, but nearly unbreakable...",
+		"description": "Pretty heavy, but nearly unbreakable...",
 		"icon": "bottom3.png",
 		"damageAbsorption": 6,
 		"durability": 195

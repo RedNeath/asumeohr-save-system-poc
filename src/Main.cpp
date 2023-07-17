@@ -14,7 +14,7 @@ int main(int argc, char *argv[]) {
     IGameLoader *gameLoader;
     if (argc < 3) {
         // For the v1, we won't allow the creation of a new save.
-        cout << R"(Missing argument for selecting the implementation ["json" || "sqlite"] or the save name)";
+        cout << R"(Missing argument for selecting the implementation ["json" || "sqlite"] or the save name)" << endl;
         return 134; // Failed assertion
     }
 
@@ -26,7 +26,7 @@ int main(int argc, char *argv[]) {
     } else if (implementation == "sqlite") {
         gameLoader = new SQLiteGameLoader();
     } else {
-        cout << R"(The argument for the implementation must be one of ["json" || "sqlite"])";
+        cout << R"(The argument for the implementation must be one of ["json" || "sqlite"])" << endl;
         return 134; // Failed assertion
     }
 
@@ -34,6 +34,7 @@ int main(int argc, char *argv[]) {
     GameSettings settings = GameSettings(); // Loading the settings there allows some overriding operations (for testing for example)
     settings.SaveName = argv[2];
     Game *game = gameLoader->LoadDataAndAssets(settings);
+    cout << "Successfully loaded all the necessary data and assets! ❤\uFE0F" << endl;
 
 
     // Theoretically, now we should loop on the Game Play method to let the user play.

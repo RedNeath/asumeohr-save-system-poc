@@ -8,9 +8,6 @@
 #include "nlohmann/json.hpp"
 #include "JsonGameLoader.h"
 #include "exceptions/SaveNotFound.h"
-#include "exceptions/EquipmentNotFound.h"
-#include "exceptions/ItemNotFound.h"
-#include "exceptions/SkillNotFound.h"
 
 using JsonDictionary = nlohmann::json;
 using namespace std;
@@ -34,6 +31,171 @@ Game *JsonGameLoader::LoadDataAndAssets(GameSettings settings) {
     return game;
 }
 
+Map *JsonGameLoader::LoadMap(const string &mapName) {
+    JsonDictionary mapData = GetData(MAPS_DIR + mapName + METADATA_FILE);
+
+    return new Map(mapData["id"], mapData["name"], mapData["height"], mapData["width"]);
+}
+
+Weapon *JsonGameLoader::LoadWeapon(const JsonDictionary &json) {
+    JsonDictionary weapons = GetData(ASSETS_WEAPON_FILE);
+    Weapon *weapon = nullptr;
+    int weaponId;
+    int durabilityLeft;
+
+    json.at("id").get_to(weaponId);
+    json.at("durabilityLeft").get_to(durabilityLeft);
+
+    for (auto &elem: weapons) {
+        int elemId;
+        elem.at("id").get_to(elemId);
+
+        if (elemId == weaponId) {
+            weapon = new Weapon(elem);
+        }
+
+        if (weapon != nullptr) {
+            // We found it, we just need to add the durability left
+            weapon->SetDurabilityLeft(durabilityLeft);
+        }
+    }
+
+    return weapon;
+}
+
+list<Equipment> JsonGameLoader::LoadEquipments(const JsonDictionary &json) {
+    JsonDictionary equipments = GetData(ASSETS_EQUIPMENT_FILE);
+    list<Equipment> playerEquipments = list<Equipment>();
+
+    for (auto &elem: equipments) {
+        int elemId;
+        elem.at("id").get_to(elemId);
+
+        for (auto &playerEquipment: json) {
+            Equipment *equipment = nullptr;
+            int id;
+            int durabilityLeft;
+
+            playerEquipment.at("id").get_to(id);
+            playerEquipment.at("durabilityLeft").get_to(durabilityLeft);
+
+            if (id == elemId) {
+                equipment = new Equipment(elem);
+            }
+
+            if (equipment != nullptr) {
+                equipment->SetDurabilityLeft(durabilityLeft);
+                playerEquipments.push_back(*equipment);
+            }
+        }
+    }
+
+    return playerEquipments;
+}
+
+list<stack<Item>> JsonGameLoader::LoadInventory(const JsonDictionary &json) {
+    // As equipments and weapons are also items, we want to create an instance of the right type, and send it back
+    // contained in an Item container.
+    // We can deduce the type based on the index: weapons ranges from 2000 to 2999; equipments from 3000 to 3999; while
+    // actual items ranges from 1000 to 1999.
+    list<stack<Item>> playerInventory = list<stack<Item>>();
+    list<JsonDictionary> actualItems = list<JsonDictionary>();
+
+    for (auto &item: json) {
+        int itemId;
+        int quantity;
+
+        item.at("item").get_to(itemId);
+        item.at("quantity").get_to(quantity);
+
+        if (itemId >= 2000 && itemId < 3000) { // It is a weapon
+            int durabilityLeft;
+            JsonDictionary weaponJson;
+
+            item.at("durabilityLeft").get_to(durabilityLeft);
+            weaponJson = JsonDictionary::parse("{\"id\": " + to_string(itemId) + ", \"durabilityLeft\": " +
+                    to_string(durabilityLeft) + "}");
+
+            stack<Item> weaponStack = stack<Item>();
+
+            for (int i = 0; i < quantity; i++) {
+                weaponStack.push(*LoadWeapon(weaponJson));
+            }
+
+            playerInventory.push_back(weaponStack);
+        } else if (itemId >= 3000 && itemId < 4000) { // It is an equipment
+            int durabilityLeft;
+            JsonDictionary equipmentJson;
+
+            item.at("durabilityLeft").get_to(durabilityLeft);
+            equipmentJson = JsonDictionary::parse("[{\"id\": " + to_string(itemId) + ", \"durabilityLeft\": " +
+                                                  to_string(durabilityLeft) + "}]");
+
+            stack<Item> equipmentStack = stack<Item>();
+
+            for (int i = 0; i < quantity; i++) {
+                equipmentStack.push(LoadEquipments(equipmentJson).front());
+            }
+
+            playerInventory.push_back(equipmentStack);
+        } else {
+            actualItems.push_back(item);
+        }
+    }
+
+    // Now we retrieved the weapons and equipments. The only things left to retrieve are actual items.
+    JsonDictionary items = GetData(ASSETS_ITEM_FILE);
+
+    for (auto &elem: items) {
+        int elemId;
+        elem.at("id").get_to(elemId);
+
+        for (auto &playerItem: actualItems) {
+            Item *item;
+            int id;
+            int quantity;
+
+            playerItem.at("item").get_to(id);
+            playerItem.at("quantity").get_to(quantity);
+
+            if (id == elemId) {
+                stack<Item> itemsStack = stack<Item>();
+
+                for (int i = 0; i < quantity; i++) {
+                    itemsStack.emplace(elem);
+                }
+
+                playerInventory.push_back(itemsStack);
+            }
+        }
+    }
+
+    return playerInventory;
+}
+
+list<Skill> JsonGameLoader::LoadSkills(const JsonDictionary &json) {
+    JsonDictionary skills = GetData(ASSETS_SKILL_FILE);
+    list<Skill> playerSkills = list<Skill>();
+
+    for (auto &elem: skills) {
+        int elemId;
+        elem.at("id").get_to(elemId);
+
+        for (auto &playerSkill: json) {
+            Skill *skill = nullptr;
+            int id;
+
+            playerSkill.get_to(id);
+
+            if (id == elemId) {
+                playerSkills.emplace_back(elem);
+            }
+        }
+    }
+
+    return playerSkills;
+}
+
 #pragma region GetData
 
 JsonDictionary JsonGameLoader::GetSaveMetadata(const string &saveName) {
@@ -55,140 +217,12 @@ JsonDictionary JsonGameLoader::GetPlayerSkills(const string &saveName) {
 #pragma endregion
 
 Player *JsonGameLoader::LoadPlayer(const string &saveName) {
-    JsonDictionary playerData = GetSaveMetadata(saveName);
-    JsonDictionary playerInventory = GetPlayerInventory(saveName);
-    JsonDictionary playerEquipments = GetPlayerEquipments(saveName);
-    JsonDictionary playerSkills = GetPlayerSkills(saveName);
+    JsonDictionary metadata = GetSaveMetadata(saveName);
+    JsonDictionary inventory = GetPlayerInventory(saveName);
+    JsonDictionary equipments = GetPlayerEquipments(saveName);
+    JsonDictionary skills = GetPlayerSkills(saveName);
 
-
-
-    // Loading player's associated objects
-    Map *playerMap = LoadMap(playerData["map"]);
-
-    Weapon *playerWeapon = LoadWeapon(playerData["weapon"]["id"]);
-
-    list<Equipment> playerEquipmentsList = list<Equipment>();
-    for (auto equipment: playerEquipments) {
-        playerEquipmentsList.push_back(LoadEquipment(equipment["id"]));
-    }
-
-    list<stack<Item>> playerInventoryList = list<stack<Item>>();
-    for (auto item: playerInventory) {
-        stack<Item> itemStack = stack<Item>();
-        for (int i = 0; i < item["quantity"]; i++) {
-            itemStack.push(LoadItem(item["id"]));
-        }
-        playerInventoryList.push_back(itemStack);
-    }
-
-    list<Skill> playerSkillsList = list<Skill>();
-    for (auto skill: playerSkills) {
-        playerSkillsList.push_back(LoadSkill(skill["id"]));
-    }
-
-    return new Player(playerData["id"], playerData["name"], playerMap, playerData["posX"],
-                      playerData["posY"],playerWeapon, playerEquipmentsList,
-                      playerInventoryList, playerSkillsList);
-}
-
-Map *JsonGameLoader::LoadMap(const string &mapName) {
-    JsonDictionary mapData = GetData(MAPS_DIR + mapName + METADATA_FILE);
-
-    return new Map(mapData["id"], mapData["name"], mapData["height"], mapData["width"]);
-}
-
-Weapon *JsonGameLoader::LoadWeapon(int weaponId) {
-    JsonDictionary weapons = GetData(ASSETS_WEAPON_FILE);
-    Weapon *weapon = nullptr;
-    int index = 0;
-
-    while (weapon == nullptr && index < weapons.size()) {
-        if (weapons[index]["id"] == weaponId) {
-            weapon = new Weapon(weapons[index]["id"], weapons[index]["name"],
-                                weapons[index]["description"], weapons[index]["damage"],
-                                weapons[index]["frequency"], weapons[index]["loadTime"],
-                                weapons[index]["range"], weapons[index]["durability"]);
-        }
-
-        index++;
-    }
-    return weapon;
-}
-
-Equipment JsonGameLoader::LoadEquipment(int equipmentId) {
-    JsonDictionary equipments = GetData(ASSETS_EQUIPMENT_FILE);
-    Equipment *equipment = nullptr;
-    int index = 0;
-
-    while (equipment == nullptr && index < equipments.size()) {
-        if (equipments[index]["id"] == equipmentId) {
-            equipment = new Equipment(equipments[index]["id"], equipments[index]["name"],
-                                      equipments[index]["description"],
-                                      equipments[index]["damageAbsorption"],
-                                      equipments[index]["durability"]);
-        }
-
-        index++;
-    }
-
-    if (equipment == nullptr) { // Should never be null in our context (this is open to criticism)
-        throw EquipmentNotFound("Could not find any equipment with id: " + to_string(equipmentId));
-    }
-
-    return *equipment;
-}
-
-Item JsonGameLoader::LoadItem(int itemId) {
-    // As equipments and weapons are also items, we want to create an instance of the right type, and send it back
-    // contained in an Item container.
-    // We can deduce the type based on the index: weapons ranges from 2000 to 2999; equipments from 3000 to 3999; while
-    // actual items ranges from 1000 to 1999.
-    Item *item = nullptr;
-
-    if (itemId >= 2000 && itemId < 3000) { // It is a weapon
-        item = LoadWeapon(itemId);
-    } else if (itemId >= 3000 && itemId < 4000) { // It is an equipment
-        Equipment equipment = LoadEquipment(itemId);
-        item = &equipment;
-    } else {
-        JsonDictionary items = GetData(ASSETS_ITEM_FILE);
-        int index = 0;
-
-        while (item == nullptr && index < items.size()) {
-            if (items[index]["id"] == itemId) {
-                item = new Item(items[index]["id"], items[index]["name"], items[index]["description"]);
-            }
-
-            index++;
-        }
-    }
-
-    if (item == nullptr) { // Should never be null in our context (this is open to criticism)
-        throw ItemNotFound("Could not find any item with id: " + to_string(itemId));
-    }
-
-    return *item;
-}
-
-Skill JsonGameLoader::LoadSkill(int skillId) {
-    JsonDictionary skills = GetData(ASSETS_SKILL_FILE);
-    Skill *skill = nullptr;
-    int index = 0;
-
-    while (skill == nullptr && index < skills.size()) {
-        if (skills[index]["id"] == skillId) {
-            skill = new Skill(skills[index]["id"], skills[index]["name"],
-                              skills[index]["description"]);
-        }
-
-        index++;
-    }
-
-    if (skill == nullptr) { // Should never be null in our context (this is open to criticism)
-        throw SkillNotFound("Could not find any equipment with id: " + to_string(skillId));
-    }
-
-    return *skill;
+    return new Player(this, metadata, equipments, inventory, skills);
 }
 
 JsonDictionary JsonGameLoader::GetData(const string &path) {

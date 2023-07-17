@@ -14,13 +14,19 @@ class JsonGameLoader: public IGameLoader {
 public:
     Game *LoadDataAndAssets(GameSettings settings) override;
 
+    Map *LoadMap(const std::string &mapName);
+    Weapon *LoadWeapon(const JsonDictionary &json);
+    std::list<Equipment> LoadEquipments(const JsonDictionary &json);
+    std::list<std::stack<Item>> LoadInventory(const JsonDictionary &json);
+    std::list<Skill> LoadSkills(const JsonDictionary &json);
+
 private:
     const std::string SAVES_DIR = "../data/json_implementation/saves/";
-    const std::string MAPS_DIR = "../data/json_implementation/maps/";
-    const std::string ASSETS_WEAPON_FILE = "../data/json_implementation/weapons.json";
-    const std::string ASSETS_EQUIPMENT_FILE = "../data/json_implementation/equipments.json";
-    const std::string ASSETS_ITEM_FILE = "../data/json_implementation/items.json";
-    const std::string ASSETS_SKILL_FILE = "../data/json_implementation/skills.json";
+    const std::string MAPS_DIR = "../data/json_implementation/assets/maps/";
+    const std::string ASSETS_WEAPON_FILE = "../data/json_implementation/assets/weapons.json";
+    const std::string ASSETS_EQUIPMENT_FILE = "../data/json_implementation/assets/equipments.json";
+    const std::string ASSETS_ITEM_FILE = "../data/json_implementation/assets/items.json";
+    const std::string ASSETS_SKILL_FILE = "../data/json_implementation/assets/skills.json";
     const std::string METADATA_FILE = "/metadata.json";
     const std::string PLAYER_EQUIPMENTS_FILE = "/equipments.json";
     const std::string PLAYER_INVENTORY_FILE = "/inventory.json";
@@ -36,11 +42,6 @@ private:
 
     // Loading methods
     Player *LoadPlayer(const std::string &saveName);
-    Map *LoadMap(const std::string &mapName);
-    Weapon *LoadWeapon(int weaponId);
-    Equipment LoadEquipment(int equipmentId);
-    Item LoadItem(int itemId);
-    Skill LoadSkill(int skillId);
 
     void ParseAndAffectGlobalVariables(Game *game, JsonDictionary jsonVariables);
 };

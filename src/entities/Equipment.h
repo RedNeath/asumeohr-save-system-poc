@@ -8,6 +8,9 @@
 
 #include "Item.h"
 #include "../interfaces/ILimitedDurabilityItem.h"
+#include "nlohmann/json.hpp"
+
+using JsonDictionary = nlohmann::json;
 
 class Equipment: public Item, protected ILimitedDurabilityItem {
 private:
@@ -18,6 +21,7 @@ public:
     Equipment(int id, const std::string &name, const std::string &description, float damageAbsorption, int durability);
     Equipment(int id, const std::string &name, const std::string &description, float damageAbsorption, int durability,
               int durabilityLeft);
+    explicit Equipment(const JsonDictionary &json);
 
     bool Use() override;
 
@@ -29,6 +33,7 @@ public:
     // Setters
     void SetDamageAbsorption(float damageAbsorption);
     void SetDurability(int durability);
+    void SetDurabilityLeft(int durabilityLeft);
 };
 
 

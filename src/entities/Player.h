@@ -9,10 +9,14 @@
 #include "Item.h"
 #include "Weapon.h"
 #include "Skill.h"
+#include "nlohmann/json.hpp"
 
 #ifndef ASUMEOHR_SAVE_SYSTEM_POC_PLAYER_H
 #define ASUMEOHR_SAVE_SYSTEM_POC_PLAYER_H
 
+using JsonDictionary = nlohmann::json;
+
+class JsonGameLoader;
 
 class Player {
 private:
@@ -30,7 +34,11 @@ public:
     Player(int id, const std::string &name, class Map *map, int posX, int posY, class Weapon *weapon,
            const std::list<Equipment> &equipments, const std::list<std::stack<Item>> &inventory,
            const std::list<Skill> &skills);
+    Player(JsonGameLoader *gameLoader, const JsonDictionary &metadata, const JsonDictionary &equipments,
+           const JsonDictionary &inventory, const JsonDictionary &skills);
     ~Player();
+
+    static void to_json(JsonDictionary &json, const Player &player);
 
     // Getters
     int GetId() const;
