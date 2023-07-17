@@ -84,9 +84,9 @@ VALUES
 	(12, 'Poison resistance', 'Reinforces with time', READFILE('../json_implementation/assets/icons/skill12.png'))
 ;
 
-INSERT INTO Player (PlayerId, Name, Map, PosX, PoxY)
+INSERT INTO Player (PlayerId, SaveName, Name, Map, PosX, PoxY)
 VALUES
-    (1, 'Redness', 3, 22, 13)
+    (1, 'save1', 'Redness', 3, 22, 13)
 ;
 
 INSERT INTO GlobalVariables (GlobalVariableId, Name, Val, Player)

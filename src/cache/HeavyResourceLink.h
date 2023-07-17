@@ -6,6 +6,7 @@
 #define ASUMEOHR_SAVE_SYSTEM_POC_HEAVYRESOURCELINK_H
 
 #include <string>
+#include "../exceptions/BadInputException.h"
 
 /**
  * This is the link object for the double linked list that belongs to the cache.
@@ -34,6 +35,7 @@ public:
                       HeavyResourceLink<TResource> *moreUsedResourceLink,
                       const std::string &dictionaryKey,
                       TResource *value);
+    ~HeavyResourceLink();
 
     /**
      * Changes the links linked to this one to the ones given as parameters. Both could be null, but not at the same
@@ -59,6 +61,92 @@ public:
     void SetDictionaryKey(const std::string &dictionaryKey);
     void SetValue(TResource *value);
 };
+
+template<typename TResource>
+HeavyResourceLink<TResource>::HeavyResourceLink(HeavyResourceLink<TResource> *lessUsedResourceLink,
+                                                HeavyResourceLink<TResource> *moreUsedResourceLink,
+                                                const std::string &dictionaryKey, TResource *value) {
+    LessUsedResourceLink = lessUsedResourceLink;
+    MoreUsedResourceLink = moreUsedResourceLink;
+    DictionaryKey = dictionaryKey;
+    Value = value;
+
+    if (LessUsedResourceLink != nullptr) {
+        LessUsedResourceLink->SetMoreUsedResourceLink(this);
+    }
+    if (MoreUsedResourceLink != nullptr) {
+        MoreUsedResourceLink->SetLessUsedResourceLink(this);
+    }
+}
+
+template<typename TResource>
+HeavyResourceLink<TResource>::~HeavyResourceLink() {
+    // ⚠️ Do not delete the object pointed at by the link properties!
+    delete Value;
+}
+
+template<typename TResource>
+void HeavyResourceLink<TResource>::Move(HeavyResourceLink<TResource> *newLessUsedResourceLink,
+                                        HeavyResourceLink<TResource> *newMoreUsedResourceLink) {
+    if (newLessUsedResourceLink == nullptr && newMoreUsedResourceLink == nullptr) {
+        throw BadInputException("Both links may not be null pointers!");
+    }
+
+    LessUsedResourceLink->SetMoreUsedResourceLink(MoreUsedResourceLink);
+    MoreUsedResourceLink->SetLessUsedResourceLink(LessUsedResourceLink);
+
+    LessUsedResourceLink = newLessUsedResourceLink;
+    MoreUsedResourceLink = newMoreUsedResourceLink;
+
+    if (LessUsedResourceLink != nullptr) {
+        LessUsedResourceLink->SetMoreUsedResourceLink(this);
+    }
+    if (MoreUsedResourceLink != nullptr) {
+        MoreUsedResourceLink->SetLessUsedResourceLink(this);
+    }
+}
+
+// Getters
+template<typename TResource>
+HeavyResourceLink<TResource> *HeavyResourceLink<TResource>::GetLessUsedResourceLink() const {
+    return LessUsedResourceLink;
+}
+
+template<typename TResource>
+HeavyResourceLink<TResource> *HeavyResourceLink<TResource>::GetMoreUsedResourceLink() const {
+    return MoreUsedResourceLink;
+}
+
+template<typename TResource>
+const std::string &HeavyResourceLink<TResource>::GetDictionaryKey() const {
+    return DictionaryKey;
+}
+
+template<typename TResource>
+TResource *HeavyResourceLink<TResource>::GetValue() const {
+    return Value;
+}
+
+// Setters
+template<typename TResource>
+void HeavyResourceLink<TResource>::SetLessUsedResourceLink(HeavyResourceLink<TResource> *lessUsedResourceLink) {
+    LessUsedResourceLink = lessUsedResourceLink;
+}
+
+template<typename TResource>
+void HeavyResourceLink<TResource>::SetMoreUsedResourceLink(HeavyResourceLink<TResource> *moreUsedResourceLink) {
+    MoreUsedResourceLink = moreUsedResourceLink;
+}
+
+template<typename TResource>
+void HeavyResourceLink<TResource>::SetDictionaryKey(const std::string &dictionaryKey) {
+    DictionaryKey = dictionaryKey;
+}
+
+template<typename TResource>
+void HeavyResourceLink<TResource>::SetValue(TResource *value) {
+    Value = value;
+}
 
 
 #endif //ASUMEOHR_SAVE_SYSTEM_POC_HEAVYRESOURCELINK_H

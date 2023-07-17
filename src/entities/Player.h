@@ -18,10 +18,10 @@ class Player {
 private:
     int Id;
     std::string Name;
-    Map *Map;
+    class Map *Map;
     int PosX;
     int PosY;
-    Weapon *Weapon;
+    class Weapon *Weapon;
     std::list<Equipment> Equipments;
     std::list<std::stack<Item>> Inventory; // Items may be stackable
     std::list<Skill> Skills;
@@ -30,6 +30,7 @@ public:
     Player(int id, const std::string &name, class Map *map, int posX, int posY, class Weapon *weapon,
            const std::list<Equipment> &equipments, const std::list<std::stack<Item>> &inventory,
            const std::list<Skill> &skills);
+    ~Player();
 
     // Getters
     int GetId() const;

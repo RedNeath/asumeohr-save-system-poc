@@ -48,7 +48,8 @@ CREATE TABLE IF NOT EXISTS Skill (
 
 CREATE TABLE IF NOT EXISTS Player (
 	PlayerId INTEGER PRIMARY KEY,
-	Name TEXT, -- For the user to be able to identify the save
+	SaveName TEXT,
+	Name TEXT,
 	Map INTEGER,
 	PosX INTEGER,
 	PoxY INTEGER,

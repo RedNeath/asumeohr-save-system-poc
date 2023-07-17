@@ -18,7 +18,7 @@
 	{
 		"id": 3002,
 		"name": "Regular short",
-		"descript̂ion": "This is the short you were wearing when you first started your adventure. It is full of memories...",
+		"description": "This is the short you were wearing when you first started your adventure. It is full of memories...",
 		"icon": "bottom1.png",
 		"damageAbsorption": 0,
 		"durability": 15

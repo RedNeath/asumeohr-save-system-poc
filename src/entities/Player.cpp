@@ -20,6 +20,11 @@ Player::Player(int id, const std::string &name, class Map* map, int posX, int po
     Skills = skills;
 }
 
+Player::~Player() {
+    delete Map;
+    delete Weapon;
+}
+
 int Player::GetId() const {
     return Id;
 }

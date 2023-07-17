@@ -9,7 +9,7 @@
 #include "Item.h"
 #include "../interfaces/ILimitedDurabilityItem.h"
 
-class Weapon: protected Item, protected ILimitedDurabilityItem {
+class Weapon: public Item, protected ILimitedDurabilityItem {
 private:
     float Damage;
     float Frequency;
