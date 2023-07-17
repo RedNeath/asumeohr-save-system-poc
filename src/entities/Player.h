@@ -61,6 +61,8 @@ public:
     void SetSkills(const std::list<Skill> &skills);
     void SetMap(class Map *map);
     void SetWeapon(class Weapon *weapon);
+
+    std::string ToString(const std::string &t);
 };
 
 

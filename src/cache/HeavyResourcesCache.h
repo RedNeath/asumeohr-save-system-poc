@@ -44,7 +44,7 @@ HeavyResourcesCache<TResource>::~HeavyResourcesCache() {
     // pointers (LRU & MRU).
     if (!Dictionary.empty()) {
         for(auto&& value: Dictionary) {
-            delete value;
+            delete value.second;
         }
     }
 }

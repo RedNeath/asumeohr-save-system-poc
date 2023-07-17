@@ -34,6 +34,8 @@ public:
     void SetName(const std::string &name);
     void SetHeight(int height);
     void SetWidth(int width);
+
+    std::string ToString(const std::string &t);
 };
 
 

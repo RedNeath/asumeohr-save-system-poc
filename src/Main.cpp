@@ -3,6 +3,7 @@
 //
 #include <iostream>
 #include <string>
+#include <chrono>
 #include "IGameLoader.h"
 #include "JsonGameLoader.h"
 #include "SQLiteGameLoader.h"
@@ -30,11 +31,17 @@ int main(int argc, char *argv[]) {
         return 134; // Failed assertion
     }
 
+    // Starting elapsed time calculation
+    chrono::steady_clock::time_point begin = chrono::steady_clock::now();
+
     // Now that we have created an instance for the interface, we may load all the data.
     GameSettings settings = GameSettings(); // Loading the settings there allows some overriding operations (for testing for example)
     settings.SaveName = argv[2];
     Game *game = gameLoader->LoadDataAndAssets(settings);
     cout << "Successfully loaded all the necessary data and assets! ❤\uFE0F" << endl;
+
+    // Stopping the elapsed time calculation
+    chrono::steady_clock::time_point end = chrono::steady_clock::now();
 
 
     // Theoretically, now we should loop on the Game Play method to let the user play.
@@ -43,7 +50,8 @@ int main(int argc, char *argv[]) {
     //}
 
     // And now it's time to display everything.
-    // TODO
+    cout << game->ToString("") << endl;
+    cout << "Loading time: " << (chrono::duration_cast<chrono::milliseconds>(end - begin).count()) << "ms" << endl;
 
 
     // Finally, we free the memory and exit the program.

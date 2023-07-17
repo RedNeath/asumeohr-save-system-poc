@@ -34,6 +34,8 @@ public:
     void SetDamageAbsorption(float damageAbsorption);
     void SetDurability(int durability);
     void SetDurabilityLeft(int durabilityLeft);
+
+    std::string ToString(const std::string &t);
 };
 
 

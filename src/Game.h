@@ -42,6 +42,8 @@ public:
     // Setters
     void SetPlayer(class Player *player);
     void SetMaps(HeavyResourcesCache<Map> *maps);
+
+    std::string ToString(const std::string &t);
 };
 
 

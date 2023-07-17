@@ -31,6 +31,8 @@ public:
     void SetId(int id);
     void SetName(const std::string &name);
     void SetDescription(const std::string &description);
+
+    std::string ToString(const std::string &t);
 };
 
 

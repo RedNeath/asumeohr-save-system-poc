@@ -95,3 +95,19 @@ void Weapon::SetDurability(int durability) {
 void Weapon::SetDurabilityLeft(int durabilityLeft) {
     DurabilityLeft = durabilityLeft;
 }
+
+string Weapon::ToString(const string &t) {
+    string output;
+
+    output  = t + "WeaponId:        " + to_string(Id) + "\n";
+    output += t + "Name:            " + Name + "\n";
+    output += t + "Description:     " + Description + "\n";
+    output += t + "Damage:          " + to_string(Damage) + "\n";
+    output += t + "Frequency:       " + to_string(Frequency) + "\n";
+    output += t + "LoadTime:        " + to_string(LoadTime) + "\n";
+    output += t + "Range:           " + to_string(Range) + "\n";
+    output += t + "Durability:      " + to_string(Durability) + "\n";
+    output += t + "DurabilityLeft:  " + to_string(DurabilityLeft);
+
+    return output;
+}

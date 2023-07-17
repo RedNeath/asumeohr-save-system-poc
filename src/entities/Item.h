@@ -30,6 +30,8 @@ public:
     // Setters
     void SetName(const std::string &name);
     void SetDescription(const std::string &description);
+
+    virtual std::string ToString(const std::string &t);
 };
 
 

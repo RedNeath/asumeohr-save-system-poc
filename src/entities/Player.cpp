@@ -41,7 +41,7 @@ Player::Player(JsonGameLoader *gameLoader, const JsonDictionary &metadata, const
 }
 
 Player::~Player() {
-    delete Map;
+    // delete Map; // Mustn't be done, it will be freed in the cache, as they share references.
     delete Weapon;
 }
 
@@ -119,4 +119,43 @@ void Player::SetMap(class Map *map) {
 
 void Player::SetWeapon(class Weapon *weapon) {
     Weapon = weapon;
+}
+
+string Player::ToString(const string &t) {
+    string output;
+    int index;
+
+    output  = t + "PlayerId:    " + to_string(Id) + "\n";
+    output += t + "Name:        " + Name + "\n";
+    output += t + "Map:\n"        + Map->ToString(t + "\t") + "\n";
+    output += t + "PosX:        " + to_string(PosX) + "\n";
+    output += t + "PosY:        " + to_string(PosY) + "\n";
+    output += t + "Weapon:\n"     + Weapon->ToString(t + "\t") + "\n";
+
+    output += t + "Equipments:\n"; // + Weapon->ToString(t + "\t") + "\n";
+    index = 1;
+    for (auto it = Equipments.begin(); it != Equipments.end(); ++it) {
+        output += t + "\tEquipment " + to_string(index) + ":\n";
+        output += it->ToString(t + "\t\t") + "\n";
+        index++;
+    }
+
+    output += t + "Skills:\n";
+    index = 1;
+    for (auto it = Skills.begin(); it != Skills.end(); ++it) {
+        output += t + "\tSkill " + to_string(index) + ":\n";
+        output += it->ToString(t + "\t\t") + "\n";
+        index++;
+    }
+
+    output += t + "Inventory:\n";
+    index = 1;
+    for (auto it = Inventory.begin(); it != Inventory.end(); ++it) {
+        output += t + "\tItem stack " + to_string(index) + ":\n";
+        output += it->top().ToString(t + "\t\t") + "\n";
+        output += t + "\t\tQuantity: " + to_string(it->size()) + "\n";
+        index++;
+    }
+
+    return output;
 }

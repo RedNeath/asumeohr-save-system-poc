@@ -63,3 +63,16 @@ void Equipment::SetDurability(int durability) {
 void Equipment::SetDurabilityLeft(int durabilityLeft) {
     DurabilityLeft = durabilityLeft;
 }
+
+string Equipment::ToString(const string &t) {
+    string output;
+
+    output  = t + "EquipmentId:         " + to_string(Id) + "\n";
+    output += t + "Name:                " + Name + "\n";
+    output += t + "Description:         " + Description + "\n";
+    output += t + "DamageAbsorption:    " + to_string(DamageAbsorption) + "\n";
+    output += t + "Durability:          " + to_string(Durability) + "\n";
+    output += t + "DurabilityLeft:      " + to_string(DurabilityLeft);
+
+    return output;
+}

@@ -39,3 +39,13 @@ void Item::SetName(const string &name) {
 void Item::SetDescription(const string &description) {
     Description = description;
 }
+
+string Item::ToString(const string &t) {
+    string output;
+
+    output  = t + "ItemId:      " + to_string(Id) + "\n";
+    output += t + "Name:        " + Name + "\n";
+    output += t + "Description: " + Description;
+
+    return output;
+}

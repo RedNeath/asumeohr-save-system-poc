@@ -44,6 +44,8 @@ public:
     void SetRange(int range);
     void SetDurability(int durability);
     void SetDurabilityLeft(int durabilityLeft);
+
+    std::string ToString(const std::string &t);
 };
 
 
