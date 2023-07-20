@@ -2,6 +2,7 @@
 // Created by redneath on 14/07/23.
 //
 
+#include <iostream>
 #include "Weapon.h"
 
 using namespace std;
@@ -108,6 +109,10 @@ string Weapon::ToString(const string &t) {
     output += t + "Range:           " + to_string(Range) + "\n";
     output += t + "Durability:      " + to_string(Durability) + "\n";
     output += t + "DurabilityLeft:  " + to_string(DurabilityLeft);
+
+    // Icon display
+    cout << "Displaying icon for... \e[1m" << Name << "\e[0m" << endl;
+    Icon.display();
 
     return output;
 }

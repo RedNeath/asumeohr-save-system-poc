@@ -12,6 +12,9 @@
 using JsonDictionary = nlohmann::json;
 using namespace std;
 
+string JsonGameLoader::ASSETS_ICONS_DIR = "../data/json_implementation/assets/icons/";
+string JsonGameLoader::MAPS_DIR = "../data/json_implementation/assets/maps/";
+
 Game *JsonGameLoader::LoadDataAndAssets(GameSettings settings) {
     Player *player = LoadPlayer(settings.SaveName);
     HeavyResourcesCache<Map> *mapCache = new HeavyResourcesCache<Map>(settings.MapCacheSize);
@@ -34,7 +37,7 @@ Game *JsonGameLoader::LoadDataAndAssets(GameSettings settings) {
 Map *JsonGameLoader::LoadMap(const string &mapName) {
     JsonDictionary mapData = GetData(MAPS_DIR + mapName + METADATA_FILE);
 
-    return new Map(mapData["id"], mapData["name"], mapData["height"], mapData["width"]);
+    return new Map(mapData, mapName);
 }
 
 Weapon *JsonGameLoader::LoadWeapon(const JsonDictionary &json) {

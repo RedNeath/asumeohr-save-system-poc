@@ -5,6 +5,7 @@
 #include "Equipment.h"
 
 #include <utility>
+#include <iostream>
 
 using namespace std;
 
@@ -73,6 +74,10 @@ string Equipment::ToString(const string &t) {
     output += t + "DamageAbsorption:    " + to_string(DamageAbsorption) + "\n";
     output += t + "Durability:          " + to_string(Durability) + "\n";
     output += t + "DurabilityLeft:      " + to_string(DurabilityLeft);
+
+    // Icon display
+    cout << "Displaying icon for... \e[1m" << Name << "\e[0m" << endl;
+    Icon.display();
 
     return output;
 }

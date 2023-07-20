@@ -12,6 +12,9 @@ using JsonDictionary = nlohmann::json;
 
 class JsonGameLoader: public IGameLoader {
 public:
+    static std::string ASSETS_ICONS_DIR;
+    static std::string MAPS_DIR;
+
     Game *LoadDataAndAssets(GameSettings settings) override;
 
     Map *LoadMap(const std::string &mapName);
@@ -22,7 +25,6 @@ public:
 
 private:
     const std::string SAVES_DIR = "../data/json_implementation/saves/";
-    const std::string MAPS_DIR = "../data/json_implementation/assets/maps/";
     const std::string ASSETS_WEAPON_FILE = "../data/json_implementation/assets/weapons.json";
     const std::string ASSETS_EQUIPMENT_FILE = "../data/json_implementation/assets/equipments.json";
     const std::string ASSETS_ITEM_FILE = "../data/json_implementation/assets/items.json";

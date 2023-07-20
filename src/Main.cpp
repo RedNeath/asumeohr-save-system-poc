@@ -50,7 +50,7 @@ int main(int argc, char *argv[]) {
     //}
 
     // And now it's time to display everything.
-    cout << game->ToString("") << endl;
+    cout << endl << endl << game->ToString("") << endl;
     cout << "Loading time: " << (chrono::duration_cast<chrono::milliseconds>(end - begin).count()) << "ms" << endl;
 
 
