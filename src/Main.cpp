@@ -22,6 +22,7 @@ int main(int argc, char *argv[]) {
     // Converting the argument into a string
     string implementation = argv[1];
 
+    // In a real implementation, this would ideally be done via dependency injection!
     if (implementation == "json") {
         gameLoader = new JsonGameLoader();
     } else if (implementation == "sqlite") {
@@ -43,15 +44,15 @@ int main(int argc, char *argv[]) {
     // Stopping the elapsed time calculation
     chrono::steady_clock::time_point end = chrono::steady_clock::now();
 
-
-    // Theoretically, now we should loop on the Game Play method to let the user play.
-    //while (true) {
-    //    game.Play();
-    //}
-
-    // And now it's time to display everything.
+    // Now it's time to display everything.
     cout << endl << endl << game->ToString("") << endl;
     cout << "Loading time: " << (chrono::duration_cast<chrono::milliseconds>(end - begin).count()) << "ms" << endl;
+
+
+    // Now we loop on the game's Play method, to let the user use commands
+    do {
+        game->Play();
+    } while (!game->HasEnded());
 
 
     // Finally, we free the memory and exit the program.

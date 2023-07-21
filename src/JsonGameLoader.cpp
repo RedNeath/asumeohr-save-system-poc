@@ -24,7 +24,7 @@ Game *JsonGameLoader::LoadDataAndAssets(GameSettings settings) {
     // load them in the cache.
     mapCache->Put(to_string(player->GetMap()->GetId()), player->GetMap());
 
-    Game *game = new Game(player, mapCache);
+    Game *game = new Game(player, mapCache, settings.SaveName);
 
     // Now that we have the game instance, we can load the global values. Being referenced in the Game object itself
     // will automatically turn them into "singletons".
