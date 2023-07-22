@@ -24,6 +24,18 @@ public:
      * @param args The command args.
      */
     virtual void Execute(std::vector<std::string> args) = 0;
+
+    int GetIntegerArg(const std::string &arg) {
+        int value;
+
+        try {
+            value = std::stoi(arg);
+        } catch (std::invalid_argument &e) {
+            value = -1;
+        }
+
+        return value;
+    }
 };
 
 #endif //ASUMEOHR_SAVE_SYSTEM_POC_ICOMMAND_H

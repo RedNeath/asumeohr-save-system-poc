@@ -48,6 +48,11 @@ private:
     };
 
 #pragma endregion Command map
+#pragma region Global state variables map
+
+    std::unordered_map<std::string, State*> GlobalStateVariables = {};
+
+#pragma endregion Global state variables map
 
     std::vector<std::string> ParseCommandTokens(const std::string &input);
     class ICommand *GetCommand(const std::string &commandName);
@@ -56,11 +61,11 @@ public:
     // Game parameters
     enum Difficulty Difficulty;
     bool ChoseClass;
-    State ConqueredRedDungeon;
-    State CrossedThousandYearsForest;
-    State ConqueredAbyssDungeon;
-    State StraightenedDawnKingdom;
-    State ConqueredFinalDungeon;
+    State *ConqueredRedDungeon;
+    State *CrossedThousandYearsForest;
+    State *ConqueredAbyssDungeon;
+    State *StraightenedDawnKingdom;
+    State *ConqueredFinalDungeon;
 
     std::string SaveName;
 
@@ -87,6 +92,8 @@ public:
     std::string ToString(const std::string &t);
     void Exit();
     bool HasEnded() const;
+    State *GetState(const std::string &variableName);
+    std::string GetStatesMapToString(const std::string &t);
 };
 
 

@@ -10,7 +10,7 @@ ToggleChoseClassCommand::ToggleChoseClassCommand(class Game *Game) : ICommand(Ga
 }
 
 void ToggleChoseClassCommand::Execute(std::vector<std::string> args) {
-
+    Game->ChoseClass = !Game->ChoseClass; // As simple as that :D
 }
 
 ToggleChoseClassCommand::~ToggleChoseClassCommand() = default;

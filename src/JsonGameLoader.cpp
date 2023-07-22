@@ -240,11 +240,11 @@ JsonDictionary JsonGameLoader::GetData(const string &path) {
 void JsonGameLoader::ParseAndAffectGlobalVariables(Game *game, JsonDictionary jsonVariables) {
     game->Difficulty = static_cast<Difficulty>(jsonVariables["difficulty"]);
     game->ChoseClass = jsonVariables["choseClass"];
-    game->ConqueredRedDungeon = static_cast<State>(jsonVariables["conqueredRedDungeon"]);
-    game->CrossedThousandYearsForest = static_cast<State>(jsonVariables["crossedThousandYearsForest"]);
-    game->ConqueredAbyssDungeon = static_cast<State>(jsonVariables["conqueredAbyssDungeon"]);
-    game->StraightenedDawnKingdom = static_cast<State>(jsonVariables["straightenedDawnKingdom"]);
-    game->ConqueredFinalDungeon = static_cast<State>(jsonVariables["conqueredFinalDungeon"]);
+    *game->ConqueredRedDungeon = static_cast<State>(jsonVariables["conqueredRedDungeon"]);
+    *game->CrossedThousandYearsForest = static_cast<State>(jsonVariables["crossedThousandYearsForest"]);
+    *game->ConqueredAbyssDungeon = static_cast<State>(jsonVariables["conqueredAbyssDungeon"]);
+    *game->StraightenedDawnKingdom = static_cast<State>(jsonVariables["straightenedDawnKingdom"]);
+    *game->ConqueredFinalDungeon = static_cast<State>(jsonVariables["conqueredFinalDungeon"]);
 }
 
 #pragma clang diagnostic pop

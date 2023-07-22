@@ -37,11 +37,32 @@ Game::Game(class Player *player, HeavyResourcesCache<Map> *maps, const std::stri
 
     Exited = false;
     Prompt = "\x1B[1;32m" + player->GetName() + "@POC-Game\033[0m:\x1B[1;34m" + SaveName + "\033[0m$ ";
+
+    // Initialise state global variables
+    ConqueredRedDungeon = new State();
+    CrossedThousandYearsForest = new State();
+    ConqueredAbyssDungeon = new State();
+    StraightenedDawnKingdom = new State();
+    ConqueredFinalDungeon = new State();
+
+    GlobalStateVariables = {
+            {"ConqueredRedDungeon", ConqueredRedDungeon},
+            {"CrossedThousandYearsForest", CrossedThousandYearsForest},
+            {"ConqueredAbyssDungeon", ConqueredAbyssDungeon},
+            {"StraightenedDawnKingdom", StraightenedDawnKingdom},
+            {"ConqueredFinalDungeon", ConqueredFinalDungeon}
+    };
 }
 
 Game::~Game() {
     delete Player;
     delete Maps;
+
+    delete ConqueredRedDungeon;
+    delete CrossedThousandYearsForest;
+    delete ConqueredAbyssDungeon;
+    delete StraightenedDawnKingdom;
+    delete ConqueredFinalDungeon;
 }
 
 void Game::Play() {
@@ -89,7 +110,16 @@ void Game::SetMaps(HeavyResourcesCache<Map> *maps) {
 string Game::ToString(const string &t) {
     string output;
 
-    output  = "Player data:\n";
+    output  = "\nGame variables:\n";
+    output += "\tDifficulty:                    " + to_string((int) Difficulty) + "\n";
+    output += "\tChoseClass:                    " + to_string(ChoseClass) + "\n";
+    output += "\tConqueredRedDungeon:           " + to_string((int) *ConqueredRedDungeon) + "\n";
+    output += "\tCrossedThousandYearsForest:    " + to_string((int) *CrossedThousandYearsForest) + "\n";
+    output += "\tConqueredAbyssDungeon:         " + to_string((int) *ConqueredAbyssDungeon) + "\n";
+    output += "\tStraightenedDawnKingdom:       " + to_string((int) *StraightenedDawnKingdom) + "\n";
+    output += "\tConqueredFinalDungeon:         " + to_string((int) *ConqueredFinalDungeon) + "\n\n";
+
+    output += "Player data:\n";
     output +=  Player->ToString(t + "\t") + "\n";
 
     //TODO
@@ -105,6 +135,27 @@ void Game::Exit() {
 
 bool Game::HasEnded() const {
     return Exited;
+}
+
+State *Game::GetState(const string &variableName) {
+    State *variable;
+    auto variablePair = GlobalStateVariables.find(variableName);
+
+    if (variablePair == GlobalStateVariables.end()) {
+        return nullptr;
+    }
+
+    return variablePair->second;
+}
+
+std::string Game::GetStatesMapToString(const string &t) {
+    string output;
+
+    for (auto it = GlobalStateVariables.begin(); it != GlobalStateVariables.end(); ++it) {
+        output += t + "- " + it->first + "\n";
+    }
+
+    return output;
 }
 
 std::vector<std::string> Game::ParseCommandTokens(const std::string &input) {
