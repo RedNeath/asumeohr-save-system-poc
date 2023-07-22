@@ -3,6 +3,7 @@
 //
 
 #include "DisplayMapCacheCommand.h"
+#include "../../exceptions/NotImplementedException.h"
 
 
 DisplayMapCacheCommand::DisplayMapCacheCommand(class Game *Game) : ICommand(Game) {
@@ -10,7 +11,7 @@ DisplayMapCacheCommand::DisplayMapCacheCommand(class Game *Game) : ICommand(Game
 }
 
 void DisplayMapCacheCommand::Execute(std::vector<std::string> args) {
-
+    throw NotImplementedException("The command \"" + args[0] + "\" has not been implemented yet.");
 }
 
 DisplayMapCacheCommand::~DisplayMapCacheCommand() = default;
