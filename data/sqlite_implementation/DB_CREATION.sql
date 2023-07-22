@@ -81,6 +81,7 @@ CREATE TABLE IF NOT EXISTS PlayerWeapons (
 	Player INTEGER,
 	Weapon INTEGER,
 	DurabilityLeft INTEGER,
+	Equipped BOOL,
 
 	FOREIGN KEY (Player) REFERENCES Player(PlayerId),
 	FOREIGN KEY (Weapon) REFERENCES Weapon(WeaponId)
@@ -90,6 +91,7 @@ CREATE TABLE IF NOT EXISTS PlayerEquipments (
 	Player INTEGER,
 	Equipment INTEGER,
 	DurabilityLeft INTEGER,
+	Equipped BOOL,
 
 	FOREIGN KEY (Player) REFERENCES Player(PlayerId),
 	FOREIGN KEY (Equipment) REFERENCES Equipment(EquipmentId)

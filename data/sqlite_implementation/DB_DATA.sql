@@ -86,7 +86,8 @@ VALUES
 
 INSERT INTO Player (PlayerId, SaveName, Name, Map, PosX, PoxY)
 VALUES
-    (1, 'save1', 'Redness', 3, 22, 13)
+    (1, 'save1', 'Redness', 3, 22, 13),
+    (2, 'save2', 'D''Ar Heten', 1, 36, 21)
 ;
 
 INSERT INTO GlobalVariables (GlobalVariableId, Name, Val, Player)
@@ -97,7 +98,14 @@ VALUES
     (4, 'CrossedThousandYearForest', 2, 1),
     (5, 'ConqueredAbyssDungeon', 2, 1),
     (6, 'StraightenedDawnKingdom', 1, 1),
-    (7, 'ConqueredFinalDungeon', 0, 1)
+    (7, 'ConqueredFinalDungeon', 0, 1),
+    (8, 'Difficulty', 3, 2),
+    (9, 'ChoseClass', 0, 2),
+    (10, 'ConqueredRedDungeon', 2, 2),
+    (11, 'CrossedThousandYearForest', 1, 2),
+    (12, 'ConqueredAbyssDungeon', 0, 2),
+    (13, 'StraightenedDawnKingdom', 0, 2),
+    (14, 'ConqueredFinalDungeon', 0, 2)
 ;
 
 INSERT INTO PlayerItems (Player, Item, Quantity)
@@ -109,20 +117,25 @@ VALUES
     (1, 7, 1),
     (1, 8, 3),
     (1, 9, 2),
-    (1, 10, 7)
+    (1, 10, 7),
+    (2, 1, 1)
 ;
 
-INSERT INTO PlayerWeapons (Player, Weapon, DurabilityLeft)
+INSERT INTO PlayerWeapons (Player, Weapon, DurabilityLeft, Equipped)
 VALUES
-    (1, 11, 48)
+    (1, 11, 48, TRUE),
+    (2, 2, 59, TRUE),
+    (1, 1, 16, FALSE)
 ;
 
-INSERT INTO PlayerEquipments (Player, Equipment, DurabilityLeft)
+INSERT INTO PlayerEquipments (Player, Equipment, DurabilityLeft, Equipped)
 VALUES
-    (1, 5, 3),
-    (1, 10, 197),
-    (1, 11, 188),
-    (1, 12, 208)
+    (1, 5, 3, TRUE),
+    (1, 10, 197, TRUE),
+    (1, 11, 188, TRUE),
+    (1, 12, 208, TRUE),
+    (2, 1, 8, TRUE),
+    (2, 6, 50, FALSE)
 ;
 
 INSERT INTO PlayerSkills (Player, Skill)
@@ -133,5 +146,9 @@ VALUES
     (1, 4),
     (1, 7),
     (1, 8),
-    (1, 12)
+    (1, 12),
+    (2, 1),
+    (2, 2),
+    (2, 3),
+    (2, 4)
 ;

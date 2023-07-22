@@ -1,0 +1,16 @@
+[
+    {
+        "item": 2000,
+        "quantity": 1,
+        "durabilityLeft": 16,
+    },
+    {
+        "item": 3005,
+        "quantity": 1,
+        "durabilityLeft": 50
+    },
+    {
+        "item": 1000,
+        "quantity": 1
+    }
+]

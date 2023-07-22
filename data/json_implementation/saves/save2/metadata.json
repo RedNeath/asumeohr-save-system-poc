@@ -1,0 +1,12 @@
+{
+    "id": 5000,
+    "name": "D'Ar Heten",
+    "map": "map1",
+    "posX": 36,
+    "posY": 21,
+
+    "weapon": {
+        "id": 2001,
+        "durabilityLeft": 59
+    }
+}
