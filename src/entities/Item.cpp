@@ -68,3 +68,7 @@ string Item::ToString(const string &t) {
 
     return output;
 }
+
+ItemType Item::GetRealType() {
+    return ItemType::ITEM;
+}

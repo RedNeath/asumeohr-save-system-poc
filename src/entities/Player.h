@@ -26,14 +26,14 @@ private:
     int PosX;
     int PosY;
     class Weapon *Weapon;
-    std::list<Equipment> Equipments;
-    std::list<std::stack<Item>> Inventory; // Items may be stackable
-    std::list<Skill> Skills;
+    std::vector<Equipment*> Equipments;
+    std::vector<std::stack<Item*>*> Inventory; // Items may be stackable
+    std::vector<Skill*> Skills;
 
 public:
     Player(int id, const std::string &name, class Map *map, int posX, int posY, class Weapon *weapon,
-           const std::list<Equipment> &equipments, const std::list<std::stack<Item>> &inventory,
-           const std::list<Skill> &skills);
+           const std::vector<Equipment*> &equipments, const std::vector<std::stack<Item*>*> &inventory,
+           const std::vector<Skill*> &skills);
     Player(JsonGameLoader *gameLoader, const JsonDictionary &metadata, const JsonDictionary &equipments,
            const JsonDictionary &inventory, const JsonDictionary &skills);
     ~Player();
@@ -45,9 +45,9 @@ public:
     const std::string &GetName() const;
     int GetPosX() const;
     int GetPosY() const;
-    const std::list<Equipment> &GetEquipments() const;
-    const std::list<std::stack<Item>> &GetInventory() const;
-    const std::list<Skill> &GetSkills() const;
+    const std::vector<Equipment*> &GetEquipments() const;
+    const std::vector<std::stack<Item*>*> &GetInventory() const;
+    const std::vector<Skill*> &GetSkills() const;
     class Map *GetMap() const;
     class Weapon *GetWeapon() const;
 
@@ -56,9 +56,9 @@ public:
     void SetName(const std::string &name);
     void SetPosX(int posX);
     void SetPosY(int posY);
-    void SetEquipments(const std::list<Equipment> &equipments);
-    void SetInventory(const std::list<std::stack<Item>> &inventory);
-    void SetSkills(const std::list<Skill> &skills);
+    void SetEquipments(const std::vector<Equipment*> &equipments);
+    void SetInventory(const std::vector<std::stack<Item*>*> &inventory);
+    void SetSkills(const std::vector<Skill*> &skills);
     void SetMap(class Map *map);
     void SetWeapon(class Weapon *weapon);
 

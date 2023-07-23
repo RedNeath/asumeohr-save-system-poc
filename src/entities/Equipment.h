@@ -36,6 +36,7 @@ public:
     void SetDurabilityLeft(int durabilityLeft);
 
     std::string ToString(const std::string &t);
+    ItemType GetRealType() override;
 };
 
 

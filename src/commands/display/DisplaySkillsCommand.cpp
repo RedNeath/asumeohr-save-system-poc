@@ -12,13 +12,13 @@ DisplaySkillsCommand::DisplaySkillsCommand(class Game *Game) : ICommand(Game) {
 }
 
 void DisplaySkillsCommand::Execute(std::vector<std::string> args) {
-    list<Skill> playerSkills = Game->GetPlayer()->GetSkills();
+    vector<Skill*> playerSkills = Game->GetPlayer()->GetSkills();
     string output; // See DisplayEquipmentsCommand
     int index = 1;
 
     for (auto item: playerSkills) {
         output += "Skill " + to_string(index) + ":\n";
-        output += item.ToString("\t") + "\n";
+        output += item->ToString("\t") + "\n";
 
         index++;
     }

@@ -19,9 +19,9 @@ public:
 
     Map *LoadMap(const std::string &mapName);
     Weapon *LoadWeapon(const JsonDictionary &json);
-    std::list<Equipment> LoadEquipments(const JsonDictionary &json);
-    std::list<std::stack<Item>> LoadInventory(const JsonDictionary &json);
-    std::list<Skill> LoadSkills(const JsonDictionary &json);
+    std::vector<Equipment*> LoadEquipments(const JsonDictionary &json);
+    std::vector<std::stack<Item*>*> LoadInventory(const JsonDictionary &json);
+    std::vector<Skill*> LoadSkills(const JsonDictionary &json);
 
 private:
     const std::string SAVES_DIR = "../data/json_implementation/saves/";

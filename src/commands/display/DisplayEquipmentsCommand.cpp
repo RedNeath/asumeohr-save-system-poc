@@ -13,13 +13,13 @@ DisplayEquipmentsCommand::DisplayEquipmentsCommand(class Game *Game) : ICommand(
 }
 
 void DisplayEquipmentsCommand::Execute(std::vector<std::string> args) {
-    list<Equipment> playerEquipments = Game->GetPlayer()->GetEquipments();
+    vector<Equipment*> playerEquipments = Game->GetPlayer()->GetEquipments();
     string output; // We do it this way so that the icons are displayed first and their display message doesn't get in the middle of the display of the equipments.
     int index = 1;
 
     for(auto item: playerEquipments) {
         output += "Equipment " + to_string(index) + ":\n";
-        output += item.ToString("\t") + "\n";
+        output += item->ToString("\t") + "\n";
 
         index++;
     }

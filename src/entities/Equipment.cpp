@@ -81,3 +81,7 @@ string Equipment::ToString(const string &t) {
 
     return output;
 }
+
+ItemType Equipment::GetRealType() {
+    return ItemType::EQUIPMENT;
+}

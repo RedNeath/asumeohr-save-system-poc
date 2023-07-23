@@ -116,3 +116,7 @@ string Weapon::ToString(const string &t) {
 
     return output;
 }
+
+ItemType Weapon::GetRealType() {
+    return ItemType::WEAPON;
+}

@@ -9,6 +9,7 @@
 #include <string>
 #include <Magick++.h>
 #include "nlohmann/json.hpp"
+#include "../enums/ItemType.h"
 
 using JsonDictionary = nlohmann::json;
 using namespace Magick;
@@ -37,6 +38,7 @@ public:
     void SetIcon(const Image &icon);
 
     virtual std::string ToString(const std::string &t);
+    virtual ItemType GetRealType();
 };
 
 

@@ -66,9 +66,9 @@ Weapon *JsonGameLoader::LoadWeapon(const JsonDictionary &json) {
     return weapon;
 }
 
-list<Equipment> JsonGameLoader::LoadEquipments(const JsonDictionary &json) {
+vector<Equipment*> JsonGameLoader::LoadEquipments(const JsonDictionary &json) {
     JsonDictionary equipments = GetData(ASSETS_EQUIPMENT_FILE);
-    list<Equipment> playerEquipments = list<Equipment>();
+    vector<Equipment*> playerEquipments = vector<Equipment*>();
 
     for (auto &elem: equipments) {
         int elemId;
@@ -88,7 +88,7 @@ list<Equipment> JsonGameLoader::LoadEquipments(const JsonDictionary &json) {
 
             if (equipment != nullptr) {
                 equipment->SetDurabilityLeft(durabilityLeft);
-                playerEquipments.push_back(*equipment);
+                playerEquipments.push_back(equipment);
             }
         }
     }
@@ -96,13 +96,13 @@ list<Equipment> JsonGameLoader::LoadEquipments(const JsonDictionary &json) {
     return playerEquipments;
 }
 
-list<stack<Item>> JsonGameLoader::LoadInventory(const JsonDictionary &json) {
+vector<stack<Item*>*> JsonGameLoader::LoadInventory(const JsonDictionary &json) {
     // As equipments and weapons are also items, we want to create an instance of the right type, and send it back
     // contained in an Item container.
     // We can deduce the type based on the index: weapons ranges from 2000 to 2999; equipments from 3000 to 3999; while
     // actual items ranges from 1000 to 1999.
-    list<stack<Item>> playerInventory = list<stack<Item>>();
-    list<JsonDictionary> actualItems = list<JsonDictionary>();
+    vector<stack<Item*>*> playerInventory = vector<stack<Item*>*>();
+    vector<JsonDictionary> actualItems = vector<JsonDictionary>();
 
     for (auto &item: json) {
         int itemId;
@@ -119,10 +119,10 @@ list<stack<Item>> JsonGameLoader::LoadInventory(const JsonDictionary &json) {
             weaponJson = JsonDictionary::parse("{\"id\": " + to_string(itemId) + ", \"durabilityLeft\": " +
                     to_string(durabilityLeft) + "}");
 
-            stack<Item> weaponStack = stack<Item>();
+            stack<Item*> *weaponStack = new stack<Item*>();
 
             for (int i = 0; i < quantity; i++) {
-                weaponStack.push(*LoadWeapon(weaponJson));
+                weaponStack->push(LoadWeapon(weaponJson));
             }
 
             playerInventory.push_back(weaponStack);
@@ -134,10 +134,10 @@ list<stack<Item>> JsonGameLoader::LoadInventory(const JsonDictionary &json) {
             equipmentJson = JsonDictionary::parse("[{\"id\": " + to_string(itemId) + ", \"durabilityLeft\": " +
                                                   to_string(durabilityLeft) + "}]");
 
-            stack<Item> equipmentStack = stack<Item>();
+            stack<Item*> *equipmentStack = new stack<Item*>();
 
             for (int i = 0; i < quantity; i++) {
-                equipmentStack.push(LoadEquipments(equipmentJson).front());
+                equipmentStack->push(LoadEquipments(equipmentJson).front());
             }
 
             playerInventory.push_back(equipmentStack);
@@ -162,10 +162,10 @@ list<stack<Item>> JsonGameLoader::LoadInventory(const JsonDictionary &json) {
             playerItem.at("quantity").get_to(quantity);
 
             if (id == elemId) {
-                stack<Item> itemsStack = stack<Item>();
+                stack<Item*> *itemsStack = new stack<Item*>();
 
                 for (int i = 0; i < quantity; i++) {
-                    itemsStack.emplace(elem);
+                    itemsStack->push(new Item(elem));
                 }
 
                 playerInventory.push_back(itemsStack);
@@ -176,22 +176,21 @@ list<stack<Item>> JsonGameLoader::LoadInventory(const JsonDictionary &json) {
     return playerInventory;
 }
 
-list<Skill> JsonGameLoader::LoadSkills(const JsonDictionary &json) {
+vector<Skill*> JsonGameLoader::LoadSkills(const JsonDictionary &json) {
     JsonDictionary skills = GetData(ASSETS_SKILL_FILE);
-    list<Skill> playerSkills = list<Skill>();
+    vector<Skill*> playerSkills = vector<Skill*>();
 
     for (auto &elem: skills) {
         int elemId;
         elem.at("id").get_to(elemId);
 
         for (auto &playerSkill: json) {
-            Skill *skill = nullptr;
             int id;
 
             playerSkill.get_to(id);
 
             if (id == elemId) {
-                playerSkills.emplace_back(elem);
+                playerSkills.push_back(new Skill(elem));
             }
         }
     }

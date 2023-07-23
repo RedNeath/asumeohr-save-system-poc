@@ -12,14 +12,14 @@ DisplayInventoryCommand::DisplayInventoryCommand(class Game *Game) : ICommand(Ga
 }
 
 void DisplayInventoryCommand::Execute(std::vector<std::string> args) {
-    list<stack<Item>> playerInventory = Game->GetPlayer()->GetInventory();
+    vector<stack<Item*>*> playerInventory = Game->GetPlayer()->GetInventory();
     string output; // See DisplayEquipmentsCommand
     int index = 1;
 
-    for (auto it = playerInventory.begin(); it != playerInventory.end(); ++it) {
+    for (auto itemStack: playerInventory) {
         output += "Item stack " + to_string(index) + ":\n";
-        output += it->top().ToString("\t") + "\n";
-        output += "\tQuantity: " + to_string(it->size()) + "\n";
+        output += itemStack->top()->ToString("\t") + "\n";
+        output += "\tQuantity: " + to_string(itemStack->size()) + "\n";
 
         index++;
     }

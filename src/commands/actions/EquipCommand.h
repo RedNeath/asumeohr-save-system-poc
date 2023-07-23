@@ -14,6 +14,10 @@ public:
     ~EquipCommand() override;
 
     void Execute(std::vector<std::string> args) override;
+
+private:
+    void EquipWeapon(Weapon *weapon);
+    void EquipEquipment(Equipment *equipment);
 };
 
 

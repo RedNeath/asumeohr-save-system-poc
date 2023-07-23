@@ -8,8 +8,8 @@
 using namespace std;
 
 Player::Player(int id, const std::string &name, class Map* map, int posX, int posY, class Weapon* weapon,
-               const std::list<Equipment> &equipments, const std::list<std::stack<Item>> &inventory,
-               const std::list<Skill> &skills) {
+               const std::vector<Equipment*> &equipments, const std::vector<std::stack<Item*>*> &inventory,
+               const std::vector<Skill*> &skills) {
     Id = id;
     Name = name;
     Map = map;
@@ -43,6 +43,25 @@ Player::Player(JsonGameLoader *gameLoader, const JsonDictionary &metadata, const
 Player::~Player() {
     // delete Map; // Mustn't be done, it will be freed in the cache, as they share references.
     delete Weapon;
+
+    for (int i = (int) Equipments.size() - 1; i >= 0; i--) {
+        delete Equipments[i];
+    }
+
+    for (int i = (int) Skills.size() - 1; i >= 0; i--) {
+        delete Skills[i];
+    }
+
+    for (int i = (int) Inventory.size() - 1; i >= 0; i--) {
+        Item* val;
+        while (!Inventory[i]->empty()) {
+            val = Inventory[i]->top();
+            Inventory[i]->pop();
+
+            delete val;
+        }
+        delete Inventory[i];
+    }
 }
 
 void Player::to_json(JsonDictionary &json, const Player &player) {
@@ -65,15 +84,15 @@ int Player::GetPosY() const {
     return PosY;
 }
 
-const list<Equipment> &Player::GetEquipments() const {
+const vector<Equipment*> &Player::GetEquipments() const {
     return Equipments;
 }
 
-const list<stack<Item>> &Player::GetInventory() const {
+const vector<stack<Item*>*> &Player::GetInventory() const {
     return Inventory;
 }
 
-const list<Skill> &Player::GetSkills() const {
+const vector<Skill*> &Player::GetSkills() const {
     return Skills;
 }
 
@@ -101,15 +120,15 @@ void Player::SetPosY(int posY) {
     PosY = posY;
 }
 
-void Player::SetEquipments(const list<Equipment> &equipments) {
+void Player::SetEquipments(const vector<Equipment*> &equipments) {
     Equipments = equipments;
 }
 
-void Player::SetInventory(const list<std::stack<Item>> &inventory) {
+void Player::SetInventory(const vector<std::stack<Item*>*> &inventory) {
     Inventory = inventory;
 }
 
-void Player::SetSkills(const list<Skill> &skills) {
+void Player::SetSkills(const vector<Skill*> &skills) {
     Skills = skills;
 }
 
@@ -134,26 +153,26 @@ string Player::ToString(const string &t) {
 
     output += t + "Equipments:\n"; // + Weapon->ToString(t + "\t") + "\n";
     index = 1;
-    for (auto it = Equipments.begin(); it != Equipments.end(); ++it) {
+    for (Equipment *equipment: Equipments) {
         output += t + "\tEquipment " + to_string(index) + ":\n";
-        output += it->ToString(t + "\t\t") + "\n";
+        output += equipment->ToString(t + "\t\t") + "\n";
         index++;
     }
 
     output += t + "Skills:\n";
     index = 1;
-    for (auto it = Skills.begin(); it != Skills.end(); ++it) {
+    for (Skill *skill: Skills) {
         output += t + "\tSkill " + to_string(index) + ":\n";
-        output += it->ToString(t + "\t\t") + "\n";
+        output += skill->ToString(t + "\t\t") + "\n";
         index++;
     }
 
     output += t + "Inventory:\n";
     index = 1;
-    for (auto it = Inventory.begin(); it != Inventory.end(); ++it) {
+    for (stack<Item*> *itemStack: Inventory) {
         output += t + "\tItem stack " + to_string(index) + ":\n";
-        output += it->top().ToString(t + "\t\t") + "\n";
-        output += t + "\t\tQuantity: " + to_string(it->size()) + "\n";
+        output += itemStack->top()->ToString(t + "\t\t") + "\n";
+        output += t + "\t\tQuantity: " + to_string(itemStack->size()) + "\n";
         index++;
     }
 
