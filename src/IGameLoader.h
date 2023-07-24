@@ -23,6 +23,8 @@ public:
     virtual Weapon *GetWeapon(int weaponId) = 0;
     virtual Equipment *GetEquipment(int equipmentId) = 0;
     virtual Skill *GetSkill(int skillId) = 0;
+
+    virtual Map *LoadMap(const std::string &mapName) = 0;
 };
 
 

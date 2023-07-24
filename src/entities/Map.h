@@ -16,18 +16,19 @@ using namespace Magick;
 class Map {
 private:
     int Id;
+    std::string IdentificationName;
     std::string Name;
     int Height;
     int Width;
     class Image Image;
-    // We'll see about the blobs later...
 
 public:
-    Map(int id, const std::string &name, int height, int width);
-    Map(const JsonDictionary &json, const std::string &mapName);
+    Map(int id, const std::string &identificationName, const std::string &name, int height, int width);
+    Map(const JsonDictionary &json, const std::string &identificationName);
 
     // Getters
     int GetId() const;
+    const std::string &GetIdentificationName() const;
     const std::string &GetName() const;
     int GetHeight() const;
     int GetWidth() const;

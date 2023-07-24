@@ -20,8 +20,8 @@ public:
     Weapon *GetWeapon(int weaponId) override;
     Equipment *GetEquipment(int equipmentId) override;
     Skill *GetSkill(int skillId) override;
+    Map *LoadMap(const std::string &mapName) override;
 
-    Map *LoadMap(const std::string &mapName);
     Weapon *LoadWeapon(const JsonDictionary &json);
     std::vector<Equipment*> LoadEquipments(const JsonDictionary &json);
     std::vector<std::stack<Item*>*> LoadInventory(const JsonDictionary &json);

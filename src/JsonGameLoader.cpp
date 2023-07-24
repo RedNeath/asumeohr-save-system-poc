@@ -26,7 +26,7 @@ Game *JsonGameLoader::LoadDataAndAssets(GameSettings settings) {
     // Putting the current map within the cache
     // If we tried to be smart, we could evaluate what maps are the most likely to appear next in memory and already
     // load them in the cache.
-    mapCache->Put(to_string(player->GetMap()->GetId()), player->GetMap());
+    mapCache->Put(player->GetMap()->GetIdentificationName(), player->GetMap());
 
     Game *game = new Game(player, mapCache, settings.SaveName);
 

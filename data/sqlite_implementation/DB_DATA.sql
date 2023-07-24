@@ -1,10 +1,10 @@
 -- Has to be performed after the creation script (of course)
 
-INSERT INTO Map (MapId, Name, Height, Width, Sprite)
+INSERT INTO Map (MapId, IdentificationName, Name, Height, Width, Sprite)
 VALUES
-	(1, 'Farm Village', 40, 60, READFILE('../json_implementation/assets/maps/map1/sprite.png')),
-	(2, 'House Interior', 15, 20, READFILE('../json_implementation/assets/maps/map2/sprite.png')),
-	(3, 'Cave', 40, 30, READFILE('../json_implementation/assets/maps/map3/sprite.png'))
+	(1, 'map1', 'Farm Village', 40, 60, READFILE('../json_implementation/assets/maps/map1/sprite.png')),
+	(2, 'map2', 'House Interior', 15, 20, READFILE('../json_implementation/assets/maps/map2/sprite.png')),
+	(3, 'map3', 'Cave', 40, 30, READFILE('../json_implementation/assets/maps/map3/sprite.png'))
 ;
 
 INSERT INTO Item (ItemId, Name, Description, Icon)

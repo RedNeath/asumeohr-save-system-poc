@@ -5,6 +5,7 @@
 
 CREATE TABLE IF NOT EXISTS Map (
 	MapId INTEGER PRIMARY KEY,
+	IdentificationName TEXT UNIQUE,
 	Name TEXT,
 	Height INTEGER,
 	Width INTEGER,

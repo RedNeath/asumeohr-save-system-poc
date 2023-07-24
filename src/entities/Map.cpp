@@ -8,27 +8,33 @@
 
 using namespace std;
 
-Map::Map(int id, const string &name, int height, int width) {
+Map::Map(int id, const string &identificationName, const string &name, int height, int width) {
     Id = id;
+    IdentificationName = identificationName;
     Name = name;
     Height = height;
     Width = width;
 }
 
-Map::Map(const JsonDictionary &json, const string &mapName) {
+Map::Map(const JsonDictionary &json, const string &identificationName) {
+    IdentificationName = identificationName;
     json.at("id").get_to(Id);
     json.at("name").get_to(Name);
     json.at("height").get_to(Height);
     json.at("width").get_to(Width);
 
     // Loading the map image
-    string img_path = JsonGameLoader::MAPS_DIR + mapName + "/sprite.png";
+    string img_path = JsonGameLoader::MAPS_DIR + identificationName + "/sprite.png";
 
     Image.read(img_path);
 }
 
 int Map::GetId() const {
     return Id;
+}
+
+const string &Map::GetIdentificationName() const {
+    return IdentificationName;
 }
 
 const string &Map::GetName() const {

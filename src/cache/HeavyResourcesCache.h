@@ -52,11 +52,11 @@ HeavyResourcesCache<TResource>::~HeavyResourcesCache() {
 template<typename TResource>
 TResource *HeavyResourcesCache<TResource>::Get(const std::string &key) {
     TResource *val = nullptr;
-    HeavyResourceLink<TResource> *link = Dictionary[key];
+    auto link = Dictionary.find(key);
 
-    if (link != nullptr) {
-        ReorganiseList(link);
-        val = link->GetValue();
+    if (link != Dictionary.end()) {
+        ReorganiseList(link->second);
+        val = link->second->GetValue();
     }
 
     return val;
@@ -66,11 +66,11 @@ template<typename TResource>
 void HeavyResourcesCache<TResource>::Put(const std::string &key, TResource *resource) {
     // First, we try to see if there is a value for the given key. This way, we can eliminate many cases where we may
     // have to free some memory.
-    HeavyResourceLink<TResource> *link = Dictionary[key];
+    auto link = Dictionary.find(key);
 
-    if (link != nullptr) {
-        ReorganiseList(link);
-        link->SetValue(resource);
+    if (link != Dictionary.end()) {
+        ReorganiseList(link->second);
+        link->second->SetValue(resource);
     } else if (Count < Capacity) {
         AddResource(key, resource);
     } else {
@@ -100,6 +100,11 @@ template<typename TResource>
 void HeavyResourcesCache<TResource>::AddResource(const std::string &key, TResource *resource) {
     HeavyResourceLink<TResource> *link = new HeavyResourceLink<TResource>(MostRecentlyUsed, nullptr, key, resource);
     MostRecentlyUsed = link;
+    Dictionary.insert({key, link});
+
+    if (Count == 0) {
+        LeastRecentlyUsed = link;
+    }
 
     Count++;
 }

@@ -23,3 +23,7 @@ Equipment *SQLiteGameLoader::GetEquipment(int equipmentId) {
 Skill *SQLiteGameLoader::GetSkill(int skillId) {
     return nullptr;
 }
+
+Map *SQLiteGameLoader::LoadMap(const std::string &mapName) {
+    return nullptr;
+}
