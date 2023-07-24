@@ -1,4 +1,4 @@
-// Commands infrastructure (Command pattern)
+// Command infrastructure (Command pattern)
 // Created by redneath on 22/07/23.
 //
 
