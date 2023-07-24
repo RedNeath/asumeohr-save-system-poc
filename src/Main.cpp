@@ -51,7 +51,7 @@ int main(int argc, char *argv[]) {
 
     // Now we loop on the game's Play method, to let the user use commands
     do {
-        game->Play();
+        game->Play(gameLoader);
     } while (!game->HasEnded());
 
 

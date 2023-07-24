@@ -11,7 +11,7 @@
 class DisplayMapCacheCommand: public ICommand {
 
 public:
-    explicit DisplayMapCacheCommand(class Game *Game);
+    explicit DisplayMapCacheCommand(class Game *Game, IGameLoader *gameLoader);
     ~DisplayMapCacheCommand() override;
 
     void Execute(std::vector<std::string> args) override;

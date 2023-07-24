@@ -11,7 +11,7 @@
 class ForgetCommand: public ICommand {
 
 public:
-    explicit ForgetCommand(class Game *Game);
+    explicit ForgetCommand(class Game *Game, IGameLoader *gameLoader);
     ~ForgetCommand() override;
 
     void Execute(std::vector<std::string> args) override;

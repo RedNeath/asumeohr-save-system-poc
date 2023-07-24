@@ -6,7 +6,7 @@
 #include "../../exceptions/NoMatchingSignature.h"
 
 
-SetDifficultyCommand::SetDifficultyCommand(class Game *Game) : ICommand(Game) {
+SetDifficultyCommand::SetDifficultyCommand(class Game *Game, IGameLoader *gameLoader) : ICommand(Game, gameLoader) {
 
 }
 

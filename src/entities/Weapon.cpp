@@ -39,6 +39,16 @@ Weapon::Weapon(const JsonDictionary &json) : Item(json) {
     json.at("durability").get_to(Durability);
 }
 
+Weapon::Weapon(const Weapon &weapon) : Item(weapon) {
+    Damage = weapon.Damage;
+    Frequency = weapon.Frequency;
+    LoadTime = weapon.LoadTime;
+    Range = weapon.Range;
+    Durability = weapon.Durability;
+
+    DurabilityLeft = weapon.DurabilityLeft;
+}
+
 bool Weapon::Use() {
     // Place specific usage code here
     return false;

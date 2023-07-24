@@ -10,7 +10,7 @@
 
 class EquipCommand: public ICommand {
 public:
-    explicit EquipCommand(class Game *Game);
+    explicit EquipCommand(class Game *Game, IGameLoader *gameLoader);
     ~EquipCommand() override;
 
     void Execute(std::vector<std::string> args) override;

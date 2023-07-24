@@ -5,7 +5,7 @@
 #include "ExitCommand.h"
 
 
-ExitCommand::ExitCommand(class Game *Game) : ICommand(Game) {
+ExitCommand::ExitCommand(class Game *Game, IGameLoader *gameLoader) : ICommand(Game, gameLoader) {
 
 }
 

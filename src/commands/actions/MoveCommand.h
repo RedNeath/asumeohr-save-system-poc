@@ -11,7 +11,7 @@
 class MoveCommand: public ICommand {
 
 public:
-    explicit MoveCommand(class Game *Game);
+    explicit MoveCommand(class Game *Game, IGameLoader *gameLoader);
     ~MoveCommand() override;
 
     void Execute(std::vector<std::string> args) override;

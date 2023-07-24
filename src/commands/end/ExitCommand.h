@@ -1,4 +1,4 @@
-//
+//;
 // Created by redneath on 22/07/23.
 //
 
@@ -10,7 +10,7 @@
 
 class ExitCommand: public ICommand {
 public:
-    explicit ExitCommand(class Game *Game);
+    explicit ExitCommand(class Game *Game, IGameLoader *gameLoader);
     ~ExitCommand() override;
 
     void Execute(std::vector<std::string> args) override;

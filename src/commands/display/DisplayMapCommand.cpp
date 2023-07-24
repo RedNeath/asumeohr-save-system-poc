@@ -7,7 +7,7 @@
 
 using namespace std;
 
-DisplayMapCommand::DisplayMapCommand(class Game *Game) : ICommand(Game) {
+DisplayMapCommand::DisplayMapCommand(class Game *Game, IGameLoader *gameLoader) : ICommand(Game, gameLoader) {
 
 }
 

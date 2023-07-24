@@ -11,7 +11,7 @@
 class ToggleChoseClassCommand: public ICommand {
 
 public:
-    explicit ToggleChoseClassCommand(class Game *Game);
+    explicit ToggleChoseClassCommand(class Game *Game, IGameLoader *gameLoader);
     ~ToggleChoseClassCommand() override;
 
     void Execute(std::vector<std::string> args) override;

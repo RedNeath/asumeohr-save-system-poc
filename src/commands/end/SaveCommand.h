@@ -10,7 +10,7 @@
 
 class SaveCommand: public ICommand {
 public:
-    explicit SaveCommand(class Game *Game);
+    explicit SaveCommand(class Game *Game, IGameLoader *gameLoader);
     ~SaveCommand() override;
 
     void Execute(std::vector<std::string> args) override;

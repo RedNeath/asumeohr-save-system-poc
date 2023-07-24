@@ -11,7 +11,7 @@
 class ProgressCommand: public ICommand {
 
 public:
-    explicit ProgressCommand(class Game *Game);
+    explicit ProgressCommand(class Game *Game, IGameLoader *gameLoader);
     ~ProgressCommand() override;
 
     void Execute(std::vector<std::string> args) override;

@@ -14,6 +14,9 @@
 #include "interfaces/ICommand.h"
 #include "enums/Commands.h"
 
+
+class IGameLoader;
+
 class Game {
 private:
     bool Exited;
@@ -55,7 +58,7 @@ private:
 #pragma endregion Global state variables map
 
     std::vector<std::string> ParseCommandTokens(const std::string &input);
-    class ICommand *GetCommand(const std::string &commandName);
+    class ICommand *GetCommand(const std::string &commandName, IGameLoader *gameLoader);
 
 public:
     // Game parameters
@@ -79,7 +82,7 @@ public:
      * Since there is nothing to refresh 60 times per minute in our terminal, we
      * can keep it frozen until a new command is entered.
      */
-    void Play();
+    void Play(IGameLoader *gameLoader);
 
     // Getters
     class Player *GetPlayer() const;

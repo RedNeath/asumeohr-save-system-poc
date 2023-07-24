@@ -6,7 +6,7 @@
 #include "../../exceptions/NotImplementedException.h"
 
 
-DisplayMapCacheCommand::DisplayMapCacheCommand(class Game *Game) : ICommand(Game) {
+DisplayMapCacheCommand::DisplayMapCacheCommand(class Game *Game, IGameLoader *gameLoader) : ICommand(Game, gameLoader) {
 
 }
 

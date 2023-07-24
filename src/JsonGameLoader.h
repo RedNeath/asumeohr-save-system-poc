@@ -16,6 +16,9 @@ public:
     static std::string MAPS_DIR;
 
     Game *LoadDataAndAssets(GameSettings settings) override;
+    Item *GetItem(int itemId) override;
+    Weapon *GetWeapon(int weaponId) override;
+    Equipment *GetEquipment(int equipmentId) override;
 
     Map *LoadMap(const std::string &mapName);
     Weapon *LoadWeapon(const JsonDictionary &json);

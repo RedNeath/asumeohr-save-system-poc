@@ -8,7 +8,7 @@
 using namespace std;
 
 
-DropCommand::DropCommand(class Game *Game) : ICommand(Game) {
+DropCommand::DropCommand(class Game *Game, IGameLoader *gameLoader) : ICommand(Game, gameLoader) {
 
 }
 

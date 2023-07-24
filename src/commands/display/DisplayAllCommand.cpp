@@ -8,7 +8,7 @@
 using namespace std;
 
 
-DisplayAllCommand::DisplayAllCommand(class Game *Game) : ICommand(Game) {
+DisplayAllCommand::DisplayAllCommand(class Game *Game, IGameLoader *gameLoader) : ICommand(Game, gameLoader) {
 
 }
 

@@ -5,7 +5,7 @@
 #include "ToggleChoseClassCommand.h"
 
 
-ToggleChoseClassCommand::ToggleChoseClassCommand(class Game *Game) : ICommand(Game) {
+ToggleChoseClassCommand::ToggleChoseClassCommand(class Game *Game, IGameLoader *gameLoader) : ICommand(Game, gameLoader) {
 
 }
 

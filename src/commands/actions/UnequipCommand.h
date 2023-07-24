@@ -11,7 +11,7 @@
 class UnequipCommand: public ICommand {
 
 public:
-    explicit UnequipCommand(class Game *Game);
+    explicit UnequipCommand(class Game *Game, IGameLoader *gameLoader);
     ~UnequipCommand() override;
 
     void Execute(std::vector<std::string> args) override;

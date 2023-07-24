@@ -11,7 +11,7 @@
 class LearnCommand: public ICommand {
 
 public:
-    explicit LearnCommand(class Game *Game);
+    explicit LearnCommand(class Game *Game, IGameLoader *gameLoader);
     ~LearnCommand() override;
 
     void Execute(std::vector<std::string> args) override;

@@ -27,6 +27,14 @@ Item::Item(const JsonDictionary &json) {
     Icon.read(img_path);
 }
 
+Item::Item(const Item &item) {
+    Id = item.Id;
+    Name = item.Name;
+    Description = item.Description;
+    Icon = item.Icon;
+}
+
+
 int Item::GetId() const {
     return Id;
 }

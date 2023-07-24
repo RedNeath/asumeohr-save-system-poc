@@ -7,7 +7,7 @@
 
 using namespace std;
 
-DisplaySkillsCommand::DisplaySkillsCommand(class Game *Game) : ICommand(Game) {
+DisplaySkillsCommand::DisplaySkillsCommand(class Game *Game, IGameLoader *gameLoader) : ICommand(Game, gameLoader) {
 
 }
 

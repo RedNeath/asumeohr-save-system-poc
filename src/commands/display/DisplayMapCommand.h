@@ -11,7 +11,7 @@
 class DisplayMapCommand: public ICommand {
 
 public:
-    explicit DisplayMapCommand(class Game *Game);
+    explicit DisplayMapCommand(class Game *Game, IGameLoader *gameLoader);
     ~DisplayMapCommand() override;
 
     void Execute(std::vector<std::string> args) override;

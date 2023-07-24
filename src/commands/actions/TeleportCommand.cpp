@@ -5,7 +5,7 @@
 #include "TeleportCommand.h"
 
 
-TeleportCommand::TeleportCommand(class Game *Game) : ICommand(Game) {
+TeleportCommand::TeleportCommand(class Game *Game, IGameLoader *gameLoader) : ICommand(Game, gameLoader) {
 
 }
 

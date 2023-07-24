@@ -11,6 +11,9 @@
 class SQLiteGameLoader: public IGameLoader {
 public:
     Game *LoadDataAndAssets(GameSettings settings) override;
+    Item *GetItem(int itemId) override;
+    Weapon *GetWeapon(int weaponId) override;
+    Equipment *GetEquipment(int equipmentId) override;
 };
 
 

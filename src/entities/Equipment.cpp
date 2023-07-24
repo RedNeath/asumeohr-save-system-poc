@@ -31,6 +31,13 @@ Equipment::Equipment(const JsonDictionary &json) : Item(json) {
     json.at("durability").get_to(Durability);
 }
 
+Equipment::Equipment(const Equipment &equipment) : Item(equipment) {
+    DamageAbsorption = equipment.DamageAbsorption;
+    Durability = equipment.Durability;
+
+    DurabilityLeft = equipment.DurabilityLeft;
+}
+
 bool Equipment::Use() {
     // Place specific usage code here
     return true;

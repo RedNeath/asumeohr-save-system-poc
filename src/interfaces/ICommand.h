@@ -7,13 +7,17 @@
 
 #include "../Game.h"
 
+class IGameLoader;
+
 class ICommand {
 protected:
     class Game *Game;
+    IGameLoader *GameLoader;
 
 public:
-    explicit ICommand(class Game *game) {
+    explicit ICommand(class Game *game, IGameLoader *gameLoader) {
         Game = game;
+        GameLoader = gameLoader;
     }
     virtual ~ICommand() = default;
 

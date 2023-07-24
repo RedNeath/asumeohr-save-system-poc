@@ -7,7 +7,7 @@
 
 using namespace std;
 
-ForgetCommand::ForgetCommand(class Game *Game) : ICommand(Game) {
+ForgetCommand::ForgetCommand(class Game *Game, IGameLoader *gameLoader) : ICommand(Game, gameLoader) {
 
 }
 

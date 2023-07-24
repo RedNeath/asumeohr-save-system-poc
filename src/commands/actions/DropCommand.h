@@ -10,7 +10,7 @@
 
 class DropCommand: public ICommand {
 public:
-    explicit DropCommand(class Game *Game);
+    explicit DropCommand(class Game *Game, IGameLoader *gameLoader);
     ~DropCommand() override;
 
     void Execute(std::vector<std::string> args) override;

@@ -20,11 +20,11 @@ protected:
     std::string Name;
     std::string Description;
     Image Icon;
-    // We'll see for the blobs later
 
 public:
     Item(int id, const std::string &name, const std::string &description);
     explicit Item(const JsonDictionary &json);
+    Item(const Item &item); // Copy constructor
 
     // Getters
     int GetId() const;

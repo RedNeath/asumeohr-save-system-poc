@@ -5,7 +5,7 @@
 #include "SaveAndExitCommand.h"
 
 
-SaveAndExitCommand::SaveAndExitCommand(class Game *Game) : ICommand(Game) {
+SaveAndExitCommand::SaveAndExitCommand(class Game *Game, IGameLoader *gameLoader) : ICommand(Game, gameLoader) {
 
 }
 

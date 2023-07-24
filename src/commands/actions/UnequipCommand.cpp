@@ -5,7 +5,7 @@
 #include "UnequipCommand.h"
 
 
-UnequipCommand::UnequipCommand(class Game *Game) : ICommand(Game) {
+UnequipCommand::UnequipCommand(class Game *Game, IGameLoader *gameLoader) : ICommand(Game, gameLoader) {
 
 }
 

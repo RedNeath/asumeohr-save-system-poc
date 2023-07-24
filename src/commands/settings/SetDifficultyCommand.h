@@ -11,7 +11,7 @@
 class SetDifficultyCommand: public ICommand {
 
 public:
-    explicit SetDifficultyCommand(class Game *Game);
+    explicit SetDifficultyCommand(class Game *Game, IGameLoader *gameLoader);
     ~SetDifficultyCommand() override;
 
     void Execute(std::vector<std::string> args) override;

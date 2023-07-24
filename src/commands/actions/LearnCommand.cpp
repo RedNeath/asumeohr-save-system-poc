@@ -5,7 +5,7 @@
 #include "LearnCommand.h"
 
 
-LearnCommand::LearnCommand(class Game *Game) : ICommand(Game) {
+LearnCommand::LearnCommand(class Game *Game, IGameLoader *gameLoader) : ICommand(Game, gameLoader) {
 
 }
 

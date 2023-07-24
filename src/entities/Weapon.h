@@ -26,6 +26,7 @@ public:
     Weapon(int id, const std::string &name, const std::string &description, float damage, float frequency,
            float loadTime, int range, int durability, int durabilityLeft);
     explicit Weapon(const JsonDictionary &json);
+    Weapon(const Weapon &weapon);
 
     bool Use() override;
 

@@ -11,7 +11,7 @@
 class DisplayInventoryCommand: public ICommand {
 
 public:
-    explicit DisplayInventoryCommand(class Game *Game);
+    explicit DisplayInventoryCommand(class Game *Game, IGameLoader *gameLoader);
     ~DisplayInventoryCommand() override;
 
     void Execute(std::vector<std::string> args) override;

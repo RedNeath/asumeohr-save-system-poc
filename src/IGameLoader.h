@@ -6,8 +6,8 @@
 #define ASUMEOHR_SAVE_SYSTEM_POC_IGAMELOADER_H
 
 
-#include "Game.h"
 #include "settings/GameSettings.h"
+#include "Game.h"
 
 class IGameLoader {
 public:
@@ -19,6 +19,9 @@ public:
      * @return The instance of game corresponding, ready to be played.
      */
     virtual Game *LoadDataAndAssets(GameSettings settings) = 0;
+    virtual Item *GetItem(int itemId) = 0;
+    virtual Weapon *GetWeapon(int weaponId) = 0;
+    virtual Equipment *GetEquipment(int equipmentId) = 0;
 };
 
 

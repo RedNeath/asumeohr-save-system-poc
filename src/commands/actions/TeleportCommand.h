@@ -11,7 +11,7 @@
 class TeleportCommand: public ICommand {
 
 public:
-    explicit TeleportCommand(class Game *Game);
+    explicit TeleportCommand(class Game *Game, IGameLoader *gameLoader);
     ~TeleportCommand() override;
 
     void Execute(std::vector<std::string> args) override;

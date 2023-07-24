@@ -5,7 +5,7 @@
 #include "MoveCommand.h"
 
 
-MoveCommand::MoveCommand(class Game *Game) : ICommand(Game) {
+MoveCommand::MoveCommand(class Game *Game, IGameLoader *gameLoader) : ICommand(Game, gameLoader) {
 
 }
 

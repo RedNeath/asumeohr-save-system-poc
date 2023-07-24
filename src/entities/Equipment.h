@@ -22,6 +22,7 @@ public:
     Equipment(int id, const std::string &name, const std::string &description, float damageAbsorption, int durability,
               int durabilityLeft);
     explicit Equipment(const JsonDictionary &json);
+    Equipment(const Equipment &equipment); // Copy constructor
 
     bool Use() override;
 

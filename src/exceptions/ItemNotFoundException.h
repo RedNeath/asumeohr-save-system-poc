@@ -7,9 +7,9 @@
 
 #include <stdexcept>
 
-class ItemNotFound: public std::runtime_error {
+class ItemNotFoundException: public std::runtime_error {
 public:
-    explicit ItemNotFound(const std::string &message) : runtime_error(message) {}
+    explicit ItemNotFoundException(const std::string &message) : runtime_error(message) {}
 };
 
 #endif //ASUMEOHR_SAVE_SYSTEM_POC_ITEMNOTFOUND7_H

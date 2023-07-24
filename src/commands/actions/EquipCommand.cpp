@@ -9,7 +9,7 @@
 
 using namespace std;
 
-EquipCommand::EquipCommand(class Game *Game) : ICommand(Game) {
+EquipCommand::EquipCommand(class Game *Game, IGameLoader *gameLoader) : ICommand(Game, gameLoader) {
 
 }
 

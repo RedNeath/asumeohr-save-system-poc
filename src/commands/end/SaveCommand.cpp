@@ -5,7 +5,7 @@
 #include "SaveCommand.h"
 
 
-SaveCommand::SaveCommand(class Game *Game) : ICommand(Game) {
+SaveCommand::SaveCommand(class Game *Game, IGameLoader *gameLoader) : ICommand(Game, gameLoader) {
 
 }
 

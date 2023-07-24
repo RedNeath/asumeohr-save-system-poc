@@ -8,6 +8,9 @@
 #include "nlohmann/json.hpp"
 #include "JsonGameLoader.h"
 #include "exceptions/SaveNotFound.h"
+#include "exceptions/ItemNotFoundException.h"
+#include "exceptions/WeaponNotFoundException.h"
+#include "exceptions/EquipmentNotFoundException.h"
 
 using JsonDictionary = nlohmann::json;
 using namespace std;
@@ -32,6 +35,75 @@ Game *JsonGameLoader::LoadDataAndAssets(GameSettings settings) {
     ParseAndAffectGlobalVariables(game, globalVariables);
 
     return game;
+}
+
+Item *JsonGameLoader::GetItem(int itemId) {
+    Item *output = nullptr;
+
+    if (itemId >= 2000 && itemId < 3000) { // It is a weapon
+        output = GetWeapon(itemId);
+    } else if (itemId >= 3000 && itemId < 4000) { // It is an equipment
+        output = GetEquipment(itemId);
+    } else {
+        JsonDictionary items = GetData(ASSETS_ITEM_FILE);
+
+        for (auto &elem: items) {
+            int elemId;
+            elem.at("id").get_to(elemId);
+
+            if (elemId == itemId) {
+                output = new Item(elem);
+            }
+        }
+
+        if (output == nullptr) {
+            throw ItemNotFoundException("No item with such Id: " + to_string(itemId) + ".");
+        }
+    }
+
+    return output;
+}
+
+Weapon *JsonGameLoader::GetWeapon(int weaponId) {
+    Weapon *output = nullptr;
+    JsonDictionary items = GetData(ASSETS_WEAPON_FILE);
+
+    for (auto &elem: items) {
+        int elemId;
+        elem.at("id").get_to(elemId);
+
+        if (elemId == weaponId) {
+            output = new Weapon(elem);
+            output->SetDurabilityLeft(output->GetDurability());
+        }
+    }
+
+    if (output == nullptr) {
+        throw WeaponNotFoundException("No weapon with such Id: " + to_string(weaponId) + ".");
+    }
+
+    return output;
+}
+
+Equipment *JsonGameLoader::GetEquipment(int equipmentId) {
+    Equipment *output = nullptr;
+    JsonDictionary items = GetData(ASSETS_EQUIPMENT_FILE);
+
+    for (auto &elem: items) {
+        int elemId;
+        elem.at("id").get_to(elemId);
+
+        if (elemId == equipmentId) {
+            output = new Equipment(elem);
+            output->SetDurabilityLeft(output->GetDurability());
+        }
+    }
+
+    if (output == nullptr) {
+        throw EquipmentNotFoundException("No equipment with such Id: " + to_string(equipmentId) + ".");
+    }
+
+    return output;
 }
 
 Map *JsonGameLoader::LoadMap(const string &mapName) {

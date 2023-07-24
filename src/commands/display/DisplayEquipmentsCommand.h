@@ -11,7 +11,7 @@
 class DisplayEquipmentsCommand: public ICommand {
 
 public:
-    explicit DisplayEquipmentsCommand(class Game *Game);
+    explicit DisplayEquipmentsCommand(class Game *Game, IGameLoader *gameLoader);
     ~DisplayEquipmentsCommand() override;
 
     void Execute(std::vector<std::string> args) override;

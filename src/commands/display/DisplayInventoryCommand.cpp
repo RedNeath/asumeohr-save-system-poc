@@ -7,7 +7,7 @@
 
 using namespace std;
 
-DisplayInventoryCommand::DisplayInventoryCommand(class Game *Game) : ICommand(Game) {
+DisplayInventoryCommand::DisplayInventoryCommand(class Game *Game, IGameLoader *gameLoader) : ICommand(Game, gameLoader) {
 
 }
 

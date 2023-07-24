@@ -7,7 +7,7 @@
 
 using namespace std;
 
-ProgressCommand::ProgressCommand(class Game *Game) : ICommand(Game) {
+ProgressCommand::ProgressCommand(class Game *Game, IGameLoader *gameLoader) : ICommand(Game, gameLoader) {
 
 }
 
