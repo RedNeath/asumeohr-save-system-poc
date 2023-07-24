@@ -19,6 +19,7 @@ public:
     Item *GetItem(int itemId) override;
     Weapon *GetWeapon(int weaponId) override;
     Equipment *GetEquipment(int equipmentId) override;
+    Skill *GetSkill(int skillId) override;
 
     Map *LoadMap(const std::string &mapName);
     Weapon *LoadWeapon(const JsonDictionary &json);

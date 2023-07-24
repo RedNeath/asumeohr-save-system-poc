@@ -27,7 +27,7 @@ void GiveCommand::Execute(std::vector<std::string> args) {
 
     // Checking the item id is correct
     if (itemId < 1000 || itemId > 3999) {
-        throw BadInputException("Bad input value for \"quantity\":\n"
+        throw BadInputException("Bad input value for \"item_id\":\n"
                                 "\tGiven: " + args[1] + "\n" +
                                 "\tExpected: An integer value between 1000 and 3999 (included).");
     }

@@ -14,6 +14,7 @@ public:
     Item *GetItem(int itemId) override;
     Weapon *GetWeapon(int weaponId) override;
     Equipment *GetEquipment(int equipmentId) override;
+    Skill *GetSkill(int skillId) override;
 };
 
 

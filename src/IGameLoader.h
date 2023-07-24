@@ -22,6 +22,7 @@ public:
     virtual Item *GetItem(int itemId) = 0;
     virtual Weapon *GetWeapon(int weaponId) = 0;
     virtual Equipment *GetEquipment(int equipmentId) = 0;
+    virtual Skill *GetSkill(int skillId) = 0;
 };
 
 

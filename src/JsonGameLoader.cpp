@@ -11,6 +11,7 @@
 #include "exceptions/ItemNotFoundException.h"
 #include "exceptions/WeaponNotFoundException.h"
 #include "exceptions/EquipmentNotFoundException.h"
+#include "exceptions/SkillNotFoundException.h"
 
 using JsonDictionary = nlohmann::json;
 using namespace std;
@@ -101,6 +102,26 @@ Equipment *JsonGameLoader::GetEquipment(int equipmentId) {
 
     if (output == nullptr) {
         throw EquipmentNotFoundException("No equipment with such Id: " + to_string(equipmentId) + ".");
+    }
+
+    return output;
+}
+
+Skill *JsonGameLoader::GetSkill(int skillId) {
+    Skill *output = nullptr;
+    JsonDictionary skills = GetData(ASSETS_SKILL_FILE);
+
+    for (auto &elem: skills) {
+        int elemId;
+        elem.at("id").get_to(elemId);
+
+        if (elemId == skillId) {
+            output = new Skill(elem);
+        }
+    }
+
+    if (output == nullptr) {
+        throw SkillNotFoundException("No skill with such Id: " + to_string(skillId) + ".");
     }
 
     return output;

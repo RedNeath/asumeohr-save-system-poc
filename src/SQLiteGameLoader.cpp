@@ -19,3 +19,7 @@ Weapon *SQLiteGameLoader::GetWeapon(int weaponId) {
 Equipment *SQLiteGameLoader::GetEquipment(int equipmentId) {
     return nullptr;
 }
+
+Skill *SQLiteGameLoader::GetSkill(int skillId) {
+    return nullptr;
+}
