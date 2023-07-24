@@ -2,7 +2,7 @@
 // Created by redneath on 21/07/23.
 //
 
-enum class Commands {
+enum class Command {
     SAVE = 0,
     SAVE_EXIT = 1,
     EXIT = 2,

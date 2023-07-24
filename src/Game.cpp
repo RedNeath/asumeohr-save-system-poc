@@ -178,91 +178,91 @@ ICommand *Game::GetCommand(const string &commandName, IGameLoader *gameLoader) {
     }
 
     switch(commandEnum->second) {
-        case Commands::SAVE:
+        case Command::SAVE:
             command = new SaveCommand(this, gameLoader);
             break;
 
-        case Commands::SAVE_EXIT:
+        case Command::SAVE_EXIT:
             command = new SaveAndExitCommand(this, gameLoader);
             break;
 
-        case Commands::EXIT:
+        case Command::EXIT:
             command = new ExitCommand(this, gameLoader);
             break;
 
-        case Commands::GIVE:
+        case Command::GIVE:
             command = new GiveCommand(this, gameLoader);
             break;
 
-        case Commands::DROP:
+        case Command::DROP:
             command = new DropCommand(this, gameLoader);
             break;
 
-        case Commands::EQUIP:
+        case Command::EQUIP:
             command = new EquipCommand(this, gameLoader);
             break;
 
-        case Commands::UNEQUIP:
+        case Command::UNEQUIP:
             command = new UnequipCommand(this, gameLoader);
             break;
 
-        case Commands::LEARN:
+        case Command::LEARN:
             command = new LearnCommand(this, gameLoader);
             break;
 
-        case Commands::FORGET:
+        case Command::FORGET:
             command = new ForgetCommand(this, gameLoader);
             break;
 
-        case Commands::MOVE:
+        case Command::MOVE:
             command = new MoveCommand(this, gameLoader);
             break;
 
-        case Commands::TELEPORT:
+        case Command::TELEPORT:
             command = new TeleportCommand(this, gameLoader);
             break;
 
-        case Commands::SET_DIFFICULTY:
+        case Command::SET_DIFFICULTY:
             command = new SetDifficultyCommand(this, gameLoader);
             break;
 
-        case Commands::TOGGLE_CHOSE_CLASS:
+        case Command::TOGGLE_CHOSE_CLASS:
             command = new ToggleChoseClassCommand(this, gameLoader);
             break;
 
-        case Commands::PROGRESS:
+        case Command::PROGRESS:
             command = new ProgressCommand(this, gameLoader);
             break;
 
-        case Commands::DISPLAY:
+        case Command::DISPLAY:
             command = new DisplayAllCommand(this, gameLoader);
             break;
 
-        case Commands::DISPLAY_PLAYER:
+        case Command::DISPLAY_PLAYER:
             command = new DisplayPlayerCommand(this, gameLoader);
             break;
 
-        case Commands::DISPLAY_MAP_CACHE:
+        case Command::DISPLAY_MAP_CACHE:
             command = new DisplayMapCacheCommand(this, gameLoader);
             break;
 
-        case Commands::DISPLAY_WEAPON:
+        case Command::DISPLAY_WEAPON:
             command = new DisplayWeaponCommand(this, gameLoader);
             break;
 
-        case Commands::DISPLAY_EQUIPMENTS:
+        case Command::DISPLAY_EQUIPMENTS:
             command = new DisplayEquipmentsCommand(this, gameLoader);
             break;
 
-        case Commands::DISPLAY_INVENTORY:
+        case Command::DISPLAY_INVENTORY:
             command = new DisplayInventoryCommand(this, gameLoader);
             break;
 
-        case Commands::DISPLAY_SKILLS:
+        case Command::DISPLAY_SKILLS:
             command = new DisplaySkillsCommand(this, gameLoader);
             break;
 
-        case Commands::DISPLAY_MAP:
+        case Command::DISPLAY_MAP:
             command = new DisplayMapCommand(this, gameLoader);
             break;
 
