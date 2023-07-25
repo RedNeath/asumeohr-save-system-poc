@@ -5,6 +5,7 @@
 #include "MoveCommand.h"
 #include "../../exceptions/NoMatchingSignature.h"
 #include "../../exceptions/DirectionNotFoundException.h"
+#include "../../exceptions/ImpossibleActionException.h"
 
 using namespace std;
 
@@ -72,6 +73,10 @@ int MoveCommand::GetAmount(std::vector<std::string> args, int position, int targ
         max = position;
     } else {
         max = target - position;
+    }
+
+    if (max == 0) {
+        throw ImpossibleActionException("Cannot move in that direction.");
     }
 
     if (args.size() >= 3 && args[2] == "max") {
