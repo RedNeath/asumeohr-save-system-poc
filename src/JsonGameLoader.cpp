@@ -7,11 +7,12 @@
 #include <fstream>
 #include "nlohmann/json.hpp"
 #include "JsonGameLoader.h"
-#include "exceptions/SaveNotFound.h"
+#include "exceptions/SaveNotFoundException.h"
 #include "exceptions/ItemNotFoundException.h"
 #include "exceptions/WeaponNotFoundException.h"
 #include "exceptions/EquipmentNotFoundException.h"
 #include "exceptions/SkillNotFoundException.h"
+#include "exceptions/MapNotFoundException.h"
 
 using JsonDictionary = nlohmann::json;
 using namespace std;
@@ -128,8 +129,12 @@ Skill *JsonGameLoader::GetSkill(int skillId) {
 }
 
 Map *JsonGameLoader::LoadMap(const string &mapName) {
-    JsonDictionary mapData = GetData(MAPS_DIR + mapName + METADATA_FILE);
+    ifstream f(MAPS_DIR + mapName + METADATA_FILE);
+    if (!f.is_open()) {
+        throw MapNotFoundException("Could not find any map with the matching map name");
+    }
 
+    JsonDictionary mapData = JsonDictionary::parse(f);
     return new Map(mapData, mapName);
 }
 
@@ -323,7 +328,7 @@ Player *JsonGameLoader::LoadPlayer(const string &saveName) {
 JsonDictionary JsonGameLoader::GetData(const string &path) {
     ifstream f(path);
     if (!f.is_open()) {
-        throw SaveNotFound("Could not find any save with the matching save name");
+        throw SaveNotFoundException("Could not find any save with the matching save name");
     }
 
     return JsonDictionary::parse(f);
