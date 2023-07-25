@@ -5,6 +5,8 @@
 //
 
 #include <fstream>
+#include <sys/stat.h>
+#include <iostream>
 #include "nlohmann/json.hpp"
 #include "JsonGameLoader.h"
 #include "exceptions/SaveNotFoundException.h"
@@ -13,6 +15,7 @@
 #include "exceptions/EquipmentNotFoundException.h"
 #include "exceptions/SkillNotFoundException.h"
 #include "exceptions/MapNotFoundException.h"
+#include "exceptions/ImpossibleActionException.h"
 
 using JsonDictionary = nlohmann::json;
 using namespace std;
@@ -342,6 +345,52 @@ void JsonGameLoader::ParseAndAffectGlobalVariables(Game *game, JsonDictionary js
     *game->ConqueredAbyssDungeon = static_cast<State>(jsonVariables["conqueredAbyssDungeon"]);
     *game->StraightenedDawnKingdom = static_cast<State>(jsonVariables["straightenedDawnKingdom"]);
     *game->ConqueredFinalDungeon = static_cast<State>(jsonVariables["conqueredFinalDungeon"]);
+}
+
+void JsonGameLoader::SaveData(Game *game, const string &saveName) {
+    // First, we create the save folder if it doesn't exist
+    string savePath = SAVES_DIR + saveName;
+    if (mkdir(savePath.c_str(), S_IRWXU | S_IRWXG | S_IROTH | S_IXOTH) == -1)
+    {
+        if(errno != EEXIST) {
+            throw ImpossibleActionException("The save failed due to some external factors.\n"
+                                            "\tError number: " + to_string(errno) + "\n"
+                                            "\tError message: " +
+                                            strerror(errno));
+        }
+    }
+
+    JsonDictionary equipments = game->GetPlayer()->GetEquipmentsAsJson();
+    JsonDictionary global = game->GetGlobalsAsJson();
+    JsonDictionary inventory = game->GetPlayer()->GetInventoryAsJson();
+    JsonDictionary metadata = game->GetPlayer()->GetMetadataAsJson();
+    JsonDictionary skills = game->GetPlayer()->GetSkillsAsJson();
+
+    ofstream equipmentsFile;
+    ofstream globalFile;
+    ofstream inventoryFile;
+    ofstream metadataFile;
+    ofstream skillsFile;
+
+    equipmentsFile.open(SAVES_DIR + saveName + PLAYER_EQUIPMENTS_FILE);
+    equipmentsFile << equipments.dump(4) << endl;
+    equipmentsFile.close();
+
+    globalFile.open(SAVES_DIR + saveName + SAVE_GLOBAL_VARIABLES);
+    globalFile << global.dump(4) << endl;
+    globalFile.close();
+
+    inventoryFile.open(SAVES_DIR + saveName + PLAYER_INVENTORY_FILE);
+    inventoryFile << inventory.dump(4) << endl;
+    inventoryFile.close();
+
+    metadataFile.open(SAVES_DIR + saveName + METADATA_FILE);
+    metadataFile << metadata.dump(4) << endl;
+    metadataFile.close();
+
+    skillsFile.open(SAVES_DIR + saveName + PLAYER_SKILLS_FILE);
+    skillsFile << skills.dump(4) << endl;
+    skillsFile.close();
 }
 
 #pragma clang diagnostic pop

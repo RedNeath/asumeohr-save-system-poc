@@ -270,3 +270,15 @@ ICommand *Game::GetCommand(const string &commandName, IGameLoader *gameLoader) {
 
     return command;
 }
+
+JsonDictionary Game::GetGlobalsAsJson() {
+    return JsonDictionary::object({
+         {"difficulty", Difficulty},
+         {"choseClass", ChoseClass},
+         {"conqueredRedDungeon", (int) *ConqueredRedDungeon},
+         {"crossedThousandYearsForest", (int) *CrossedThousandYearsForest},
+         {"conqueredAbyssDungeon", (int) *ConqueredAbyssDungeon},
+         {"straightenedDawnKingdom", (int) *StraightenedDawnKingdom},
+         {"conqueredFinalDungeon", (int) *ConqueredFinalDungeon}
+    });
+}

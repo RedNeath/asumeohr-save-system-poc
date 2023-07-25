@@ -29,7 +29,7 @@ public:
     // Getters
     float GetDamageAbsorption() const;
     int GetDurability() const;
-    int GetDurabilityLeft() const;
+    int GetDurabilityLeft() const override;
 
     // Setters
     void SetDamageAbsorption(float damageAbsorption);

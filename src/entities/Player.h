@@ -38,8 +38,6 @@ public:
            const JsonDictionary &inventory, const JsonDictionary &skills);
     ~Player();
 
-    static void to_json(JsonDictionary &json, const Player &player);
-
     // Getters
     int GetId() const;
     const std::string &GetName() const;
@@ -63,6 +61,10 @@ public:
     void SetWeapon(class Weapon *weapon);
 
     std::string ToString(const std::string &t);
+    JsonDictionary GetEquipmentsAsJson();
+    JsonDictionary GetInventoryAsJson();
+    JsonDictionary GetMetadataAsJson();
+    JsonDictionary GetSkillsAsJson();
 };
 
 

@@ -64,10 +64,6 @@ Player::~Player() {
     }
 }
 
-void Player::to_json(JsonDictionary &json, const Player &player) {
-
-}
-
 int Player::GetId() const {
     return Id;
 }
@@ -183,4 +179,68 @@ string Player::ToString(const string &t) {
     }
 
     return output;
+}
+
+JsonDictionary Player::GetEquipmentsAsJson() {
+    vector<unordered_map<string, int>> jsonEquipments = vector<unordered_map<string, int>>();
+
+    for (auto equipment: Equipments) {
+        jsonEquipments.push_back(unordered_map<string, int>({
+            {"id", equipment->GetId()},
+            {"durabilityLeft", equipment->GetDurabilityLeft()}
+        }));
+    }
+
+    return JsonDictionary(jsonEquipments);
+}
+
+JsonDictionary Player::GetInventoryAsJson() {
+    vector<unordered_map<string, int>> jsonInventory = vector<unordered_map<string, int>>();
+
+    for (auto itemStack: Inventory) {
+        unordered_map<string, int> itemMap = unordered_map<string, int>({
+            {"item",     itemStack->top()->GetId()},
+            {"quantity", itemStack->size()}
+        });
+
+        if (itemStack->top()->GetRealType() == ItemType::WEAPON ||
+            itemStack->top()->GetRealType() == ItemType::EQUIPMENT) {
+            ILimitedDurabilityItem *item = dynamic_cast<class ILimitedDurabilityItem *>(itemStack->top());
+            itemMap.insert({"durabilityLeft", item->GetDurabilityLeft()});
+        }
+
+        jsonInventory.push_back(itemMap);
+    }
+
+    return JsonDictionary(jsonInventory);
+}
+
+JsonDictionary Player::GetMetadataAsJson() {
+    JsonDictionary json = JsonDictionary();
+
+    json["id"] = Id;
+    json["name"] = Name;
+    json["map"] = Map->GetIdentificationName();
+    json["posX"] = PosX;
+    json["posY"] = PosY;
+    if (Weapon != nullptr) {
+        json["weapon"] = JsonDictionary({
+            {"id", Weapon->GetId()},
+            {"durabilityLeft", Weapon->GetDurabilityLeft()}
+        });
+    } else {
+        json["weapon"] = nullptr;
+    }
+
+    return json;
+}
+
+JsonDictionary Player::GetSkillsAsJson() {
+    JsonDictionary json = JsonDictionary::array();
+
+    for (auto skill: Skills) {
+        json.push_back(skill->GetId());
+    }
+
+    return json;
 }

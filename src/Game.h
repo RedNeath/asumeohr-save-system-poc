@@ -97,6 +97,8 @@ public:
     bool HasEnded() const;
     State *GetState(const std::string &variableName);
     std::string GetStatesMapToString(const std::string &t);
+
+    JsonDictionary GetGlobalsAsJson();
 };
 
 

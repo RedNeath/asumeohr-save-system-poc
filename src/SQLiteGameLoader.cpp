@@ -27,3 +27,7 @@ Skill *SQLiteGameLoader::GetSkill(int skillId) {
 Map *SQLiteGameLoader::LoadMap(const std::string &mapName) {
     return nullptr;
 }
+
+void SQLiteGameLoader::SaveData(Game *game, const std::string &saveName) {
+
+}

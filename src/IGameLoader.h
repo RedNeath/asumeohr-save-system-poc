@@ -25,6 +25,8 @@ public:
     virtual Skill *GetSkill(int skillId) = 0;
 
     virtual Map *LoadMap(const std::string &mapName) = 0;
+
+    virtual void SaveData(Game *game, const std::string &saveName) = 0;
 };
 
 

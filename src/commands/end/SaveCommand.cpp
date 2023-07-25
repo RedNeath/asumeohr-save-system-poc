@@ -3,6 +3,7 @@
 //
 
 #include "SaveCommand.h"
+#include "../../IGameLoader.h"
 
 
 SaveCommand::SaveCommand(class Game *Game, IGameLoader *gameLoader) : ICommand(Game, gameLoader) {
@@ -10,7 +11,11 @@ SaveCommand::SaveCommand(class Game *Game, IGameLoader *gameLoader) : ICommand(G
 }
 
 void SaveCommand::Execute(std::vector<std::string> args) {
-
+    if (args.size() > 1) {
+        GameLoader->SaveData(Game, args[1]);
+    } else {
+        GameLoader->SaveData(Game, Game->SaveName);
+    }
 }
 
 SaveCommand::~SaveCommand() = default;

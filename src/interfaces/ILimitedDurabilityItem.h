@@ -27,6 +27,8 @@ public:
 
         return DurabilityLeft == 0;
     }
+
+    virtual int GetDurabilityLeft() const = 0;
 };
 
 

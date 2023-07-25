@@ -36,7 +36,7 @@ public:
     float GetLoadTime() const;
     int GetRange() const;
     int GetDurability() const;
-    int GetDurabilityLeft() const;
+    int GetDurabilityLeft() const override;
 
     // Setters
     void SetDamage(float damage);

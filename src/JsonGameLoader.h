@@ -22,6 +22,8 @@ public:
     Skill *GetSkill(int skillId) override;
     Map *LoadMap(const std::string &mapName) override;
 
+    void SaveData(Game *game, const std::string &saveName) override;
+
     Weapon *LoadWeapon(const JsonDictionary &json);
     std::vector<Equipment*> LoadEquipments(const JsonDictionary &json);
     std::vector<std::stack<Item*>*> LoadInventory(const JsonDictionary &json);
