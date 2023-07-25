@@ -149,7 +149,13 @@ string Player::ToString(const string &t) {
     output += t + "Map:\n"        + Map->ToString(t + "\t") + "\n";
     output += t + "PosX:        " + to_string(PosX) + "\n";
     output += t + "PosY:        " + to_string(PosY) + "\n";
-    output += t + "Weapon:\n"     + Weapon->ToString(t + "\t") + "\n";
+    output += t + "Weapon:\n";
+    if (Weapon == nullptr) {
+        output += t + "\tNo weapon equipped";
+    } else {
+        output += Weapon->ToString(t + "\t");
+    }
+    output += "\n";
 
     output += t + "Equipments:\n"; // + Weapon->ToString(t + "\t") + "\n";
     index = 1;

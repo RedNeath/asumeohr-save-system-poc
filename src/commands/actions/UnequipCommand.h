@@ -9,7 +9,9 @@
 #include "../../Game.h"
 
 class UnequipCommand: public ICommand {
-
+private:
+    void UnequipWeapon();
+    void UnequipEquipment(const std::string &argument);
 public:
     explicit UnequipCommand(class Game *Game, IGameLoader *gameLoader);
     ~UnequipCommand() override;
