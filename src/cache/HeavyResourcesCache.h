@@ -83,14 +83,16 @@ void HeavyResourcesCache<TResource>::Put(const std::string &key, TResource *reso
 
 template<typename TResource>
 void HeavyResourcesCache<TResource>::ReorganiseList(HeavyResourceLink<TResource> *lastUsedLink) {
-    if (lastUsedLink == LeastRecentlyUsed && lastUsedLink != MostRecentlyUsed) {
-        // The value to retrieve was about to be deleted. If we don't move our pointer, it won't be pointing at the
-        // least recently used anymore. So we take the one just next to.
-        LeastRecentlyUsed = lastUsedLink->GetMoreUsedResourceLink();
-    }
-    if (lastUsedLink != MostRecentlyUsed) {
-        // Moving the value at the end only if it isn't already (otherwise it will reference itself and be taken out
-        // of the linked list)
+    // Four possible cases:
+    // -> The link is the most recently used
+    // -> THe link is the least recently used
+    // -> The link is in the middle of the cache
+    // -> The link is the most recently used AND the least recently used (cache with 1 element)
+    if (LeastRecentlyUsed != MostRecentlyUsed && lastUsedLink != MostRecentlyUsed) {
+        if (lastUsedLink == LeastRecentlyUsed) {
+            LeastRecentlyUsed = lastUsedLink->GetMoreUsedResourceLink();
+        }
+
         lastUsedLink->Move(MostRecentlyUsed, nullptr);
         MostRecentlyUsed = lastUsedLink;
     }
@@ -113,9 +115,10 @@ template<typename TResource>
 void HeavyResourcesCache<TResource>::DeleteLRU() {
     HeavyResourceLink<TResource> *toDelete = LeastRecentlyUsed;
     LeastRecentlyUsed = LeastRecentlyUsed->GetMoreUsedResourceLink();
+    LeastRecentlyUsed->SetLessUsedResourceLink(nullptr);
 
     Dictionary.erase(toDelete->GetDictionaryKey());
-    delete toDelete->GetValue();
+    //delete toDelete->GetValue();
     delete toDelete;
 
     Count--;

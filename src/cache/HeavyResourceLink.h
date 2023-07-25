@@ -92,8 +92,12 @@ void HeavyResourceLink<TResource>::Move(HeavyResourceLink<TResource> *newLessUse
         throw BadInputException("Both links may not be null pointers!");
     }
 
-    LessUsedResourceLink->SetMoreUsedResourceLink(MoreUsedResourceLink);
-    MoreUsedResourceLink->SetLessUsedResourceLink(LessUsedResourceLink);
+    if (LessUsedResourceLink != nullptr) {
+        LessUsedResourceLink->SetMoreUsedResourceLink(MoreUsedResourceLink);
+    }
+    if (MoreUsedResourceLink != nullptr) {
+        MoreUsedResourceLink->SetLessUsedResourceLink(LessUsedResourceLink);
+    }
 
     LessUsedResourceLink = newLessUsedResourceLink;
     MoreUsedResourceLink = newMoreUsedResourceLink;
