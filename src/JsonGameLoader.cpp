@@ -360,37 +360,49 @@ void JsonGameLoader::SaveData(Game *game, const string &saveName) {
         }
     }
 
-    JsonDictionary equipments = game->GetPlayer()->GetEquipmentsAsJson();
-    JsonDictionary global = game->GetGlobalsAsJson();
-    JsonDictionary inventory = game->GetPlayer()->GetInventoryAsJson();
-    JsonDictionary metadata = game->GetPlayer()->GetMetadataAsJson();
-    JsonDictionary skills = game->GetPlayer()->GetSkillsAsJson();
+    SaveEquipments(savePath, game->GetPlayer());
+    SaveGlobalVariables(savePath, game);
+    SaveInventory(savePath, game->GetPlayer());
+    SavePlayerMetadata(savePath, game->GetPlayer());
+    SaveSkills(savePath, game->GetPlayer());
+}
 
-    ofstream equipmentsFile;
-    ofstream globalFile;
-    ofstream inventoryFile;
-    ofstream metadataFile;
-    ofstream skillsFile;
+void JsonGameLoader::SaveEquipments(const string &savePath, Player *player) {
+    JsonDictionary equipments = player->GetEquipmentsAsJson();
 
-    equipmentsFile.open(SAVES_DIR + saveName + PLAYER_EQUIPMENTS_FILE);
-    equipmentsFile << equipments.dump(4) << endl;
-    equipmentsFile.close();
+    DumpToFile(savePath + PLAYER_EQUIPMENTS_FILE, equipments);
+}
 
-    globalFile.open(SAVES_DIR + saveName + SAVE_GLOBAL_VARIABLES);
-    globalFile << global.dump(4) << endl;
-    globalFile.close();
+void JsonGameLoader::SaveGlobalVariables(const string &savePath, Game *game) {
+    JsonDictionary globalVariables = game->GetGlobalsAsJson();
 
-    inventoryFile.open(SAVES_DIR + saveName + PLAYER_INVENTORY_FILE);
-    inventoryFile << inventory.dump(4) << endl;
-    inventoryFile.close();
+    DumpToFile(savePath + SAVE_GLOBAL_VARIABLES, globalVariables);
+}
 
-    metadataFile.open(SAVES_DIR + saveName + METADATA_FILE);
-    metadataFile << metadata.dump(4) << endl;
-    metadataFile.close();
+void JsonGameLoader::SaveInventory(const string &savePath, Player *player) {
+    JsonDictionary inventory = player->GetInventoryAsJson();
 
-    skillsFile.open(SAVES_DIR + saveName + PLAYER_SKILLS_FILE);
-    skillsFile << skills.dump(4) << endl;
-    skillsFile.close();
+    DumpToFile(savePath + PLAYER_INVENTORY_FILE, inventory);
+}
+
+void JsonGameLoader::SavePlayerMetadata(const string &savePath, Player *player) {
+    JsonDictionary metadata = player->GetMetadataAsJson();
+
+    DumpToFile(savePath + METADATA_FILE, metadata);
+}
+
+void JsonGameLoader::SaveSkills(const string &savePath, Player *player) {
+    JsonDictionary skills = player->GetSkillsAsJson();
+
+    DumpToFile(savePath + PLAYER_SKILLS_FILE, skills);
+}
+
+void JsonGameLoader::DumpToFile(const string &filePath, const JsonDictionary& content) {
+    ofstream file;
+
+    file.open(filePath);
+    file << content.dump(4) << endl;
+    file.close();
 }
 
 #pragma clang diagnostic pop

@@ -38,6 +38,8 @@ public:
 
     std::string ToString(const std::string &t);
     ItemType GetRealType() override;
+    JsonDictionary GetAsJson();
+    JsonDictionary GetAsJsonInventory() override;
 };
 
 

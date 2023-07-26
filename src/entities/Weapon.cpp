@@ -130,3 +130,21 @@ string Weapon::ToString(const string &t) {
 ItemType Weapon::GetRealType() {
     return ItemType::WEAPON;
 }
+
+JsonDictionary Weapon::GetAsJson() {
+    JsonDictionary json = JsonDictionary();
+
+    json["id"] = Id;
+    json["durabilityLeft"] = DurabilityLeft;
+
+    return json;
+}
+
+JsonDictionary Weapon::GetAsJsonInventory() {
+    JsonDictionary json = JsonDictionary();
+
+    json["item"] = Id;
+    json["durabilityLeft"] = DurabilityLeft;
+
+    return json;
+}

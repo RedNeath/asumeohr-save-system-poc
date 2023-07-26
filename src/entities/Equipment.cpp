@@ -92,3 +92,21 @@ string Equipment::ToString(const string &t) {
 ItemType Equipment::GetRealType() {
     return ItemType::EQUIPMENT;
 }
+
+JsonDictionary Equipment::GetAsJson() {
+    JsonDictionary json = JsonDictionary();
+
+    json["id"] = Id;
+    json["durabilityLeft"] = DurabilityLeft;
+
+    return json;
+}
+
+JsonDictionary Equipment::GetAsJsonInventory() {
+    JsonDictionary json = JsonDictionary();
+
+    json["item"] = Id;
+    json["durabilityLeft"] = DurabilityLeft;
+
+    return json;
+}

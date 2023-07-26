@@ -39,6 +39,7 @@ public:
 
     virtual std::string ToString(const std::string &t);
     virtual ItemType GetRealType();
+    virtual JsonDictionary GetAsJsonInventory();
 };
 
 

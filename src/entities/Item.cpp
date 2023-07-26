@@ -80,3 +80,11 @@ string Item::ToString(const string &t) {
 ItemType Item::GetRealType() {
     return ItemType::ITEM;
 }
+
+JsonDictionary Item::GetAsJsonInventory() {
+    JsonDictionary json = JsonDictionary();
+
+    json["item"] = Id;
+
+    return json;
+}

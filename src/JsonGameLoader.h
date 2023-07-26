@@ -52,6 +52,14 @@ private:
     Player *LoadPlayer(const std::string &saveName);
 
     void ParseAndAffectGlobalVariables(Game *game, JsonDictionary jsonVariables);
+
+    // Saving methods
+    void SaveEquipments(const std::string &savePath, Player *player);
+    void SaveGlobalVariables(const std::string &savePath, Game *game);
+    void SaveInventory(const std::string &savePath, Player *player);
+    void SavePlayerMetadata(const std::string &savePath, Player *player);
+    void SaveSkills(const std::string &savePath, Player *player);
+    void DumpToFile(const std::string &filePath, const JsonDictionary& content);
 };
 
 
