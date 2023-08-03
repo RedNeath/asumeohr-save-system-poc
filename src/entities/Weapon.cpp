@@ -19,9 +19,9 @@ Weapon::Weapon(int id, const string &name, const string &description, float dama
     DurabilityLeft = durability;
 }
 
-Weapon::Weapon(int id, const string &name, const string &description, float damage, float frequency,
+Weapon::Weapon(int id, const string &name, const string &description, vector<char> icon, float damage, float frequency,
                float loadTime, int range, int durability, int durabilityLeft)
-: Item(id, name, description) {
+: Item(id, name, description, icon) {
     Damage = damage;
     Frequency = frequency;
     LoadTime = loadTime;

@@ -17,9 +17,9 @@ Equipment::Equipment(int id, const string &name, const string &description, floa
     DurabilityLeft = durability;
 }
 
-Equipment::Equipment(int id, const string &name, const string &description, float damageAbsorption, int durability,
-                     int durabilityLeft)
-: Item(id, name, description) {
+Equipment::Equipment(int id, const string &name, const string &description, vector<char> icon, float damageAbsorption,
+                     int durability, int durabilityLeft)
+: Item(id, name, description, icon) {
     DamageAbsorption = damageAbsorption;
     Durability = durability;
 

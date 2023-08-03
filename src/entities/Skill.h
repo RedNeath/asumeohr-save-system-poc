@@ -22,7 +22,7 @@ private:
     // We'll see for the blobs later...
 
 public:
-    Skill(int id, const std::string &name, const std::string &description);
+    Skill(int id, const std::string &name, const std::string &description, std::vector<char> icon);
     Skill(const JsonDictionary &json);
 
     // Getters

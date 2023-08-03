@@ -19,8 +19,8 @@ private:
 
 public:
     Equipment(int id, const std::string &name, const std::string &description, float damageAbsorption, int durability);
-    Equipment(int id, const std::string &name, const std::string &description, float damageAbsorption, int durability,
-              int durabilityLeft);
+    Equipment(int id, const std::string &name, const std::string &description, std::vector<char> icon,
+              float damageAbsorption, int durability, int durabilityLeft);
     explicit Equipment(const JsonDictionary &json);
     Equipment(const Equipment &equipment); // Copy constructor
 

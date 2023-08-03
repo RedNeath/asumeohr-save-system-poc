@@ -14,6 +14,16 @@ Item::Item(int id, const string &name, const string &description) {
     Description = description;
 }
 
+Item::Item(int id, const string &name, const string &description, vector<char> icon) {
+    Id = id;
+    Name = name;
+    Description = description;
+
+    // Loading the image
+    Blob blob(icon.data(), icon.size());
+    Icon.read(blob);
+}
+
 Item::Item(const JsonDictionary &json) {
     json.at("id").get_to(Id);
     json.at("name").get_to(Name);

@@ -8,10 +8,14 @@
 
 using namespace std;
 
-Skill::Skill(int id, const string &name, const string &description) {
+Skill::Skill(int id, const string &name, const string &description, vector<char> icon) {
     Id = id;
     Name = name;
     Description = description;
+
+    // Loading the image
+    Blob blob(icon.data(), icon.size());
+    Icon.read(blob);
 }
 
 Skill::Skill(const JsonDictionary &json) {

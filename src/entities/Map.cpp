@@ -8,12 +8,16 @@
 
 using namespace std;
 
-Map::Map(int id, const string &identificationName, const string &name, int height, int width) {
+Map::Map(int id, const string &identificationName, const string &name, int height, int width, vector<char> sprite) {
     Id = id;
     IdentificationName = identificationName;
     Name = name;
     Height = height;
     Width = width;
+
+    // Loading the image
+    Blob blob(sprite.data(), sprite.size());
+    Image.read(blob);
 }
 
 Map::Map(const JsonDictionary &json, const string &identificationName) {
@@ -49,7 +53,7 @@ int Map::GetWidth() const {
     return Width;
 }
 
-const Image &Map::getImage() const {
+const Image &Map::GetImage() const {
     return Image;
 }
 

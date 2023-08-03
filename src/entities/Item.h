@@ -23,6 +23,7 @@ protected:
 
 public:
     Item(int id, const std::string &name, const std::string &description);
+    Item(int id, const std::string &name, const std::string &description, std::vector<char> icon);
     explicit Item(const JsonDictionary &json);
     Item(const Item &item); // Copy constructor
 

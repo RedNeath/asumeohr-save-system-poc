@@ -23,7 +23,8 @@ private:
     class Image Image;
 
 public:
-    Map(int id, const std::string &identificationName, const std::string &name, int height, int width);
+    Map(int id, const std::string &identificationName, const std::string &name, int height, int width,
+        std::vector<char> sprite);
     Map(const JsonDictionary &json, const std::string &identificationName);
 
     // Getters
@@ -32,7 +33,7 @@ public:
     const std::string &GetName() const;
     int GetHeight() const;
     int GetWidth() const;
-    const class Image &getImage() const;
+    const class Image &GetImage() const;
 
     // Setters
     void SetId(int id);
