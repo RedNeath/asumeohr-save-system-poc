@@ -34,10 +34,15 @@ Player::Player(JsonGameLoader *gameLoader, const JsonDictionary &metadata, const
     metadata.at("weapon").get_to(weapon);
 
     Map = gameLoader->LoadMap(mapName);
-    Weapon = gameLoader->LoadWeapon(weapon);
     Equipments = gameLoader->LoadEquipments(equipments);
     Inventory = gameLoader->LoadInventory(inventory);
     Skills = gameLoader->LoadSkills(skills);
+
+    try {
+        Weapon = gameLoader->LoadWeapon(weapon);
+    } catch (nlohmann::json_abi_v3_11_2::detail::type_error &e) {
+        Weapon = nullptr;
+    }
 }
 
 Player::~Player() {

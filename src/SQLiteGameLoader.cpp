@@ -35,7 +35,7 @@ Game *SQLiteGameLoader::LoadDataAndAssets(GameSettings settings) {
 }
 
 Item *SQLiteGameLoader::GetItem(int itemId) {
-    Item *item;
+    Item *item = nullptr;
     database db(DB_PATH);
 
     if (itemId >= 2000 && itemId < 3000) { // It is a weapon
@@ -65,7 +65,7 @@ Item *SQLiteGameLoader::GetItem(int itemId) {
 }
 
 Weapon *SQLiteGameLoader::GetWeapon(int weaponId) {
-    Weapon *weapon;
+    Weapon *weapon = nullptr;
     database db(DB_PATH);
 
     string query = R"(
@@ -96,7 +96,7 @@ Weapon *SQLiteGameLoader::GetWeapon(int weaponId) {
 }
 
 Equipment *SQLiteGameLoader::GetEquipment(int equipmentId) {
-    Equipment *equipment;
+    Equipment *equipment = nullptr;
     database db(DB_PATH);
 
     string query = R"(
@@ -124,7 +124,7 @@ Equipment *SQLiteGameLoader::GetEquipment(int equipmentId) {
 }
 
 Skill *SQLiteGameLoader::GetSkill(int skillId) {
-    Skill *skill;
+    Skill *skill = nullptr;
     database db(DB_PATH);
 
     string query = R"(
@@ -148,7 +148,7 @@ Skill *SQLiteGameLoader::GetSkill(int skillId) {
 }
 
 Map *SQLiteGameLoader::LoadMap(const string &mapName) {
-    Map *map;
+    Map *map = nullptr;
     database db(DB_PATH);
 
     string query = R"(

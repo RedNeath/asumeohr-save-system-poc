@@ -24,6 +24,10 @@ void EquipCommand::Execute(std::vector<std::string> args) {
     int slot = GetIntegerArg(args[1]) - 1;
     vector<stack<Item*>*> inventory = Game->GetPlayer()->GetInventory();
 
+    if (inventory.empty()) {
+        throw ImpossibleActionException("There is nothing in the inventory.");
+    }
+
     // Checking the inventory slot
     if (slot < 0 || slot > inventory.size() - 1 ||
         (inventory[slot]->top()->GetRealType() != ItemType::EQUIPMENT && inventory[slot]->top()->GetRealType() != ItemType::WEAPON))

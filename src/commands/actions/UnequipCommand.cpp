@@ -55,6 +55,10 @@ void UnequipCommand::UnequipEquipment(const string &argument) {
     vector<stack<Item*>*> inventory = Game->GetPlayer()->GetInventory();
     stack<Item*> *itemStack = nullptr;
 
+    if (equipments.empty()) {
+        throw ImpossibleActionException("There is no equipment equipped.");
+    }
+
     if (equipmentSlot < 0 || equipmentSlot > equipments.size() - 1) {
         throw BadInputException("Bad input value for \"equipment_slot\":\n"
                                 "\tGiven: " + argument + "\n" +

@@ -81,4 +81,5 @@ the list of commands, with a brief description and the details of their argument
 SQLite: 3.31.1 (released on 2020-01-27)  
 g++: 9.4.0 (released in 2019)  
 nlohmann/json: 3.11.2 (released on 2022-08-12)  
-libmagick++-dev: 6.9.10.23 (released on 2023-03-15)
+libmagick++-dev: 6.9.10.23 (released on 2023-03-15)  
+sqlite_modern_cpp: latest (cloned from the repo)

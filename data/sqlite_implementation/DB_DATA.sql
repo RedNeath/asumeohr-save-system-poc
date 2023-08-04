@@ -87,7 +87,8 @@ VALUES
 INSERT INTO Player (PlayerId, SaveName, Name, Map, PosX, PosY)
 VALUES
     (1, 'save1', 'Redness', 3, 22, 13),
-    (2, 'save2', 'D''Ar Heten', 1, 36, 21)
+    (2, 'save2', 'D''Ar Heten', 1, 36, 21),
+    (3, 'new_save', 'Test', 1, 36, 21)
 ;
 
 INSERT INTO GlobalVariables (GlobalVariableId, Name, Val, Player)
@@ -105,7 +106,14 @@ VALUES
     (11, 'CrossedThousandYearsForest', 1, 2),
     (12, 'ConqueredAbyssDungeon', 0, 2),
     (13, 'StraightenedDawnKingdom', 0, 2),
-    (14, 'ConqueredFinalDungeon', 0, 2)
+    (14, 'ConqueredFinalDungeon', 0, 2),
+    (15, 'Difficulty', 1, 3),
+    (16, 'ChoseClass', 0, 3),
+    (17, 'ConqueredRedDungeon', 0, 3),
+    (18, 'CrossedThousandYearsForest', 0, 3),
+    (19, 'ConqueredAbyssDungeon', 0, 3),
+    (20, 'StraightenedDawnKingdom', 0, 3),
+    (21, 'ConqueredFinalDungeon', 0, 3)
 ;
 
 INSERT INTO PlayerItems (Player, Item, Quantity)
@@ -150,5 +158,8 @@ VALUES
     (2, 4000),
     (2, 4001),
     (2, 4002),
-    (2, 4003)
+    (2, 4003),
+    (3, 4000),
+    (3, 4001),
+    (3, 4002)
 ;
